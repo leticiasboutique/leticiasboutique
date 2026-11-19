@@ -25,7 +25,7 @@
       line-height: 1.45;
     }
 
-    button, input, select {
+    button, input {
       font-family: inherit;
       color: inherit;
     }
@@ -143,29 +143,21 @@
     .hero-banner {
       position: relative;
       min-height: 360px;
-      background:
-        linear-gradient(90deg, rgba(235, 221, 207, 0.25) 0%, rgba(234, 219, 204, 0.55) 52%, rgba(228, 211, 194, 0.88) 100%),
-        linear-gradient(135deg, #d7c3b0 0%, #c5ab93 48%, #e4d2c1 100%);
+      background: #e8d8c8;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
       padding: 36px 40px;
       overflow: hidden;
     }
 
-    .hero-banner::before {
-      content: "";
+    .hero-bg-img {
       position: absolute;
       inset: 0;
-      background-image:
-        radial-gradient(circle at 22% 52%, rgba(82, 54, 42, 0.24) 0%, transparent 28%),
-        radial-gradient(circle at 43% 54%, rgba(112, 78, 58, 0.22) 0%, transparent 26%),
-        radial-gradient(circle at 61% 52%, rgba(74, 48, 38, 0.24) 0%, transparent 25%);
-      pointer-events: none;
-    }
-
-    .hero-spacer {
-      flex: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
 
     .hero-copy {
@@ -173,7 +165,6 @@
       z-index: 1;
       max-width: 340px;
       text-align: center;
-      margin-left: auto;
     }
 
     .hero-copy h1 {
@@ -238,23 +229,12 @@
       padding: 14px;
     }
 
-    .cat-tile.jewelry-bg {
-      background: linear-gradient(135deg, #d8bfa6 0%, #ead8c3 55%, #cbb094 100%);
-    }
-
-    .cat-tile.fajas-bg {
-      background: linear-gradient(135deg, #c9a68b 0%, #dfc2aa 55%, #b99377 100%);
-    }
-
-    .cat-tile.perfume-bg {
-      background: linear-gradient(135deg, #e5cbb8 0%, #f3e2d5 55%, #d6b69e 100%);
-    }
-
-    .cat-tile::after {
-      content: "";
+    .cat-tile img {
       position: absolute;
       inset: 0;
-      background: rgba(45, 31, 24, 0.24);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .cat-tile span,
@@ -262,7 +242,7 @@
       position: relative;
       z-index: 1;
       color: #fff;
-      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
     }
 
     .cat-tile span {
@@ -328,86 +308,6 @@
       object-fit: contain;
     }
 
-    .fav-visual {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: system-ui, sans-serif;
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .ring-bangle {
-      width: 96px;
-      height: 96px;
-      border-radius: 50%;
-      border: 11px solid #d4af5a;
-      box-shadow: inset 0 1px 4px rgba(255, 255, 255, 0.7), 0 4px 10px rgba(0, 0, 0, 0.08);
-    }
-
-    .perfume-flacon {
-      width: 68px;
-      height: 82px;
-      border-radius: 6px;
-      background: linear-gradient(180deg, rgba(248, 214, 218, 0.78) 0%, rgba(235, 185, 192, 0.88) 100%);
-      border: 1px solid #e2c7cc;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: Georgia, serif;
-      font-style: italic;
-      font-size: 11px;
-      color: #6f4b52;
-    }
-
-    .perfume-flacon::before {
-      content: "";
-      position: absolute;
-      top: -16px;
-      width: 24px;
-      height: 16px;
-      background: #e6d8dc;
-      border: 1px solid #cbb9bf;
-    }
-
-    .faja-silhouette {
-      width: 66px;
-      height: 104px;
-      background: #d8b598;
-      border-radius: 24px 24px 12px 12px;
-      box-shadow: inset -6px 0 10px rgba(120, 82, 54, 0.18);
-    }
-
-    .necklace-pendant {
-      position: relative;
-      width: 84px;
-      height: 96px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .chain-arc {
-      width: 72px;
-      height: 54px;
-      border-top: 1.5px solid #c9a252;
-      border-left: 1.5px solid #c9a252;
-      border-right: 1.5px solid #c9a252;
-      border-radius: 40px 40px 0 0;
-    }
-
-    .clover-charm {
-      width: 24px;
-      height: 24px;
-      border-radius: 6px;
-      background: #faf6f0;
-      border: 2px solid #c9a252;
-      transform: translateY(-4px);
-    }
-
     .fav-title {
       font-size: 12px;
       color: var(--text);
@@ -436,11 +336,11 @@
       background: var(--brown-dark);
     }
 
-    /* Secondary Views (Category, Bag & Payment) */
+    /* Bag & Payment Method Views */
     .sub-box {
       background: var(--surface);
       border: 1px solid var(--border);
-      padding: 28px;
+      padding: 26px;
       margin-top: 12px;
     }
 
@@ -453,31 +353,12 @@
       display: inline-block;
     }
 
-    .step-trail {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: system-ui, sans-serif;
-      font-size: 11px;
-      letter-spacing: 1.4px;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 18px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .step-trail span.active-step {
-      color: var(--text);
-      font-weight: 700;
-    }
-
     .bag-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 12px;
-      padding: 14px 0;
+      padding: 12px 0;
       border-bottom: 1px solid var(--border);
       font-family: system-ui, sans-serif;
       font-size: 13px;
@@ -508,23 +389,11 @@
     .checkout-grid {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
-      gap: 28px;
-      margin-top: 12px;
+      gap: 26px;
+      margin-top: 14px;
       font-family: system-ui, sans-serif;
       font-size: 13px;
       align-items: start;
-    }
-
-    .section-subtitle {
-      font-family: Georgia, serif;
-      font-size: 18px;
-      font-weight: normal;
-      color: var(--text);
-      margin: 18px 0 10px;
-    }
-
-    .section-subtitle:first-child {
-      margin-top: 0;
     }
 
     .field {
@@ -536,7 +405,6 @@
 
     .field label {
       font-size: 11px;
-      letter-spacing: 0.4px;
       color: var(--muted);
     }
 
@@ -554,7 +422,6 @@
       border-color: var(--brown);
     }
 
-    /* Payment Method Selector */
     .payment-methods {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -565,15 +432,14 @@
     .pm-option {
       border: 1px solid var(--border);
       background: #fdfcfb;
-      padding: 11px 12px;
+      padding: 10px 12px;
       text-align: left;
       display: flex;
       align-items: center;
-      gap: 9px;
+      gap: 8px;
       font-family: system-ui, sans-serif;
       font-size: 12px;
       color: var(--text);
-      transition: border-color 0.15s, background 0.15s;
     }
 
     .pm-option.selected {
@@ -582,53 +448,17 @@
       font-weight: 600;
     }
 
-    .pm-radio {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      border: 1.5px solid var(--brown);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .pm-option.selected .pm-radio::after {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--brown);
-    }
-
     .pm-panel {
-      background: #faf7f4;
+      background: var(--bg);
       border: 1px solid var(--border);
-      padding: 16px;
+      padding: 14px;
       margin-bottom: 14px;
     }
 
     .summary-card {
-      background: #faf7f4;
+      background: var(--bg);
       border: 1px solid var(--border);
       padding: 18px;
-    }
-
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 10px;
-      font-size: 13px;
-    }
-
-    .summary-total {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 14px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
-      font-size: 15px;
-      font-weight: 700;
     }
 
     @media (max-width: 820px) {
@@ -645,12 +475,7 @@
       .hero-banner {
         padding: 28px 20px;
         min-height: 280px;
-      }
-      .hero-spacer {
-        display: none;
-      }
-      .hero-copy {
-        margin: 0 auto;
+        justify-content: center;
       }
       .category-row {
         grid-template-columns: 1fr;
@@ -701,7 +526,7 @@
   <!-- HOMEPAGE VIEW -->
   <main id="view-home" class="view active">
     <section class="hero-banner">
-      <div class="hero-spacer"></div>
+      <img class="hero-bg-img" src="images/hero-banner.jpg" alt="Leticia's Boutique" onerror="this.style.display='none';" />
       <div class="hero-copy">
         <h1>Leticia's<br>Boutique</h1>
         <div class="hero-sub">LUXURY &bull; BEAUTY &bull; STYLE</div>
@@ -712,17 +537,20 @@
     <div class="page-wrap">
       <!-- 3 Category Cards -->
       <section class="category-row" aria-label="Shop by Category">
-        <button type="button" class="cat-tile jewelry-bg" data-view="jewelry">
+        <button type="button" class="cat-tile" data-view="jewelry">
+          <img src="images/cat-jewelry.jpg" alt="Jewelry" onerror="this.style.display='none';" />
           <span>Jewelry</span>
           <small>SHOP NOW &rarr;</small>
         </button>
 
-        <button type="button" class="cat-tile fajas-bg" data-view="fajas">
+        <button type="button" class="cat-tile" data-view="fajas">
+          <img src="images/cat-fajas.jpg" alt="Fajas" onerror="this.style.display='none';" />
           <span>Fajas</span>
           <small>SHOP NOW &rarr;</small>
         </button>
 
-        <button type="button" class="cat-tile perfume-bg" data-view="perfume">
+        <button type="button" class="cat-tile" data-view="perfume">
+          <img src="images/cat-perfume.jpg" alt="Perfume" onerror="this.style.display='none';" />
           <span>Perfume</span>
           <small>SHOP NOW &rarr;</small>
         </button>
@@ -745,7 +573,7 @@
     <div class="page-wrap">
       <button type="button" class="back-link" data-view="home">&larr; Back to Home</button>
       <div class="sub-box">
-        <h2>Jewelry</h2>
+        <h2 style="font-weight:normal;">Jewelry</h2>
         <p style="color:var(--muted); margin-top:6px;">Explore bracelets, necklaces, and statement pieces.</p>
       </div>
     </div>
@@ -755,7 +583,7 @@
     <div class="page-wrap">
       <button type="button" class="back-link" data-view="home">&larr; Back to Home</button>
       <div class="sub-box">
-        <h2>Fajas</h2>
+        <h2 style="font-weight:normal;">Fajas</h2>
         <p style="color:var(--muted); margin-top:6px;">Sculpting bodysuits, cinchers, and shapers.</p>
       </div>
     </div>
@@ -765,7 +593,7 @@
     <div class="page-wrap">
       <button type="button" class="back-link" data-view="home">&larr; Back to Home</button>
       <div class="sub-box">
-        <h2>Perfume</h2>
+        <h2 style="font-weight:normal;">Perfume</h2>
         <p style="color:var(--muted); margin-top:6px;">Signature eaux de parfum and fine fragrances.</p>
       </div>
     </div>
@@ -779,7 +607,7 @@
     </div>
   </section>
 
-  <!-- PAYMENT METHOD / CHECKOUT VIEW -->
+  <!-- PAYMENT METHOD VIEW -->
   <section id="view-payment" class="view">
     <div class="page-wrap">
       <button type="button" class="back-link" data-view="bag">&larr; Back to Bag</button>
@@ -793,33 +621,25 @@
         id: "cartier-love",
         name: "Cartier Love Bracelet",
         price: 6750.00,
-        img: "images/cartier-love-bracelet.jpg",
-        visualClass: "ring-bangle",
-        visualText: ""
+        img: "images/cartier-love-bracelet.jpg"
       },
       {
         id: "miss-dior",
         name: "Miss Dior Eau de Parfum",
         price: 145.00,
-        img: "images/miss-dior-parfum.jpg",
-        visualClass: "perfume-flacon",
-        visualText: "Miss Dior"
+        img: "images/miss-dior-parfum.jpg"
       },
       {
         id: "faja-colombiana",
         name: "Faja Colombiana",
         price: 69.99,
-        img: "images/faja-colombiana.jpg",
-        visualClass: "faja-silhouette",
-        visualText: ""
+        img: "images/faja-colombiana.jpg"
       },
       {
         id: "van-cleef",
         name: "Van Cleef Necklace",
         price: 2350.00,
-        img: "images/van-cleef-necklace.jpg",
-        visualClass: "necklace-pendant",
-        visualText: ""
+        img: "images/van-cleef-necklace.jpg"
       }
     ];
 
@@ -829,7 +649,7 @@
     ];
     let promoIdx = 0;
     let bag = [];
-    let selectedPaymentMethod = "card";
+    let paymentMethod = "card";
 
     function formatMoney(amount) {
       return "$" + amount.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -861,15 +681,7 @@
       grid.innerHTML = list.map(item => `
         <article class="fav-card">
           <div class="fav-img-box">
-            <img
-              src="${item.img}"
-              alt="${item.name}"
-              onload="this.nextElementSibling.style.display='none';"
-              onerror="this.style.display='none';"
-            />
-            <div class="fav-visual">
-              <div class="${item.visualClass}">${item.visualText}</div>
-            </div>
+            <img src="${item.img}" alt="${item.name}" onerror="this.style.display='none';" />
           </div>
           <div class="fav-title">${item.name}</div>
           <div class="fav-price">${formatMoney(item.price)}</div>
@@ -915,7 +727,7 @@
           <p style="color:var(--muted); margin:10px 0 18px; font-family:system-ui, sans-serif; font-size:13px;">
             Your bag is currently empty.
           </p>
-          <button type="button" class="btn-dark" onclick="showView('home')">EXPLORE BOUTIQUE &rarr;</button>
+          <button type="button" class="btn-dark" onclick="showView('home')">SHOP NOW &rarr;</button>
         `;
         return;
       }
@@ -925,21 +737,12 @@
       const total = subtotal + shipping;
 
       box.innerHTML = `
-        <div class="step-trail">
-          <span class="active-step">1. Your Bag</span>
-          <span>&rsaquo;</span>
-          <span>2. Payment Method</span>
-          <span>&rsaquo;</span>
-          <span>3. Confirmation</span>
-        </div>
-
-        <h2 style="font-weight:normal; margin-bottom:8px;">Your Shopping Bag</h2>
-
+        <h2 style="font-weight:normal; margin-bottom:10px;">Your Shopping Bag</h2>
         <div>
           ${bag.map(item => `
             <div class="bag-row">
               <div>
-                <div style="font-family:Georgia, serif; font-size:15px;">${item.name}</div>
+                <div style="font-family:Georgia, serif; font-size:14px;">${item.name}</div>
                 <div style="color:var(--muted); font-size:12px;">${formatMoney(item.price)} each</div>
               </div>
               <div style="display:flex; align-items:center;">
@@ -957,28 +760,28 @@
           `).join("")}
         </div>
 
-        <div style="max-width:340px; margin-left:auto; margin-top:18px; font-family:system-ui, sans-serif;">
-          <div class="summary-row">
+        <div style="max-width:340px; margin-left:auto; margin-top:16px; font-family:system-ui, sans-serif;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
             <span style="color:var(--muted);">Subtotal</span>
             <span>${formatMoney(subtotal)}</span>
           </div>
-          <div class="summary-row">
-            <span style="color:var(--muted);">Shipping ${subtotal >= 75 ? "(Free over $75)" : ""}</span>
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
+            <span style="color:var(--muted);">Shipping</span>
             <span>${shipping === 0 ? "FREE" : formatMoney(shipping)}</span>
           </div>
-          <div class="summary-total">
-            <span>Estimated Total</span>
+          <div style="display:flex; justify-content:space-between; padding-top:10px; border-top:1px solid var(--border); font-weight:700; font-size:15px;">
+            <span>Total</span>
             <span>${formatMoney(total)}</span>
           </div>
-          <button type="button" class="btn-dark" style="width:100%; justify-content:center; margin-top:16px; padding:12px 18px;" onclick="showView('payment')">
-            PROCEED TO CHECKOUT &rarr;
+          <button type="button" class="btn-dark" style="width:100%; justify-content:center; margin-top:14px; padding:11px 18px;" onclick="showView('payment')">
+            CHECKOUT &rarr;
           </button>
         </div>
       `;
     }
 
-    function selectPaymentMethod(method) {
-      selectedPaymentMethod = method;
+    function setPaymentMethod(method) {
+      paymentMethod = method;
       renderPayment();
     }
 
@@ -993,16 +796,16 @@
       const shipping = subtotal >= 75 ? 0 : 6.99;
       const total = subtotal + shipping;
 
-      let methodFieldsHtml = "";
-      if (selectedPaymentMethod === "card") {
-        methodFieldsHtml = `
+      let fieldsHtml = "";
+      if (paymentMethod === "card") {
+        fieldsHtml = `
           <div class="field">
-            <label for="cardHolder">Name on Card</label>
-            <input id="cardHolder" type="text" required placeholder="Full name on card" />
+            <label for="cardName">Name on Card</label>
+            <input id="cardName" type="text" required placeholder="Full name on card" />
           </div>
           <div class="field">
-            <label for="cardNum">Card Number</label>
-            <input id="cardNum" type="text" inputmode="numeric" maxlength="19" required placeholder="1234 5678 9012 3456" />
+            <label for="cardNumber">Card Number</label>
+            <input id="cardNumber" type="text" inputmode="numeric" maxlength="19" required placeholder="1234 5678 9012 3456" />
           </div>
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
             <div class="field">
@@ -1010,115 +813,88 @@
               <input id="cardExp" type="text" maxlength="5" required placeholder="09/28" />
             </div>
             <div class="field">
-              <label for="cardCvc">Security Code (CVC)</label>
+              <label for="cardCvc">CVC</label>
               <input id="cardCvc" type="text" inputmode="numeric" maxlength="4" required placeholder="123" />
             </div>
           </div>
         `;
-      } else if (selectedPaymentMethod === "applepay") {
-        methodFieldsHtml = `
-          <p style="font-size:12px; color:var(--muted); line-height:1.5;">
-            Express checkout with <strong>Apple Pay</strong>. Click below to authorize your ${formatMoney(total)} payment using your linked Apple Wallet card.
+      } else if (paymentMethod === "applepay") {
+        fieldsHtml = `
+          <p style="font-size:12px; color:var(--muted);">
+            Pay <strong>${formatMoney(total)}</strong> with Apple Pay.
           </p>
         `;
-      } else if (selectedPaymentMethod === "paypal") {
-        methodFieldsHtml = `
+      } else if (paymentMethod === "paypal") {
+        fieldsHtml = `
           <div class="field">
-            <label for="paypalEmail">PayPal Account Email</label>
+            <label for="paypalEmail">PayPal Email</label>
             <input id="paypalEmail" type="email" required placeholder="you@example.com" />
           </div>
-          <p style="font-size:12px; color:var(--muted);">
-            Your payment of ${formatMoney(total)} will be processed securely through PayPal.
-          </p>
         `;
-      } else if (selectedPaymentMethod === "klarna") {
-        const installment = total / 4;
-        methodFieldsHtml = `
-          <p style="font-size:12px; color:var(--text); margin-bottom:6px;">
-            <strong>4 interest-free payments of ${formatMoney(installment)}</strong>
-          </p>
-          <p style="font-size:12px; color:var(--muted);">
-            Pay today: ${formatMoney(installment)}, followed by 3 automatic payments every 2 weeks with 0% APR.
+      } else if (paymentMethod === "installments") {
+        fieldsHtml = `
+          <p style="font-size:12px; color:var(--text);">
+            4 interest-free payments of <strong>${formatMoney(total / 4)}</strong>.
           </p>
         `;
       }
 
       box.innerHTML = `
-        <div class="step-trail">
-          <span>1. Your Bag</span>
-          <span>&rsaquo;</span>
-          <span class="active-step">2. Payment Method</span>
-          <span>&rsaquo;</span>
-          <span>3. Confirmation</span>
-        </div>
-
-        <h2 style="font-weight:normal; margin-bottom:4px;">Checkout &amp; Payment</h2>
+        <h2 style="font-weight:normal; margin-bottom:4px;">Payment Method</h2>
         <p style="font-style:italic; font-size:13px; color:var(--muted); margin-bottom:14px;">
-          Complete your order securely at Leticia's Boutique.
+          Choose how you would like to pay for your order.
         </p>
 
         <div class="checkout-grid">
-          <form onsubmit="submitOrder(event, ${total})">
-            <h3 class="section-subtitle">Shipping Details</h3>
+          <form onsubmit="completePayment(event, ${total})">
             <div class="field">
-              <label for="shipName">Full Name</label>
-              <input id="shipName" type="text" required placeholder="Your full name" />
+              <label for="buyerName">Full Name</label>
+              <input id="buyerName" type="text" required placeholder="Your full name" />
             </div>
             <div class="field">
-              <label for="shipEmail">Email for Receipt</label>
-              <input id="shipEmail" type="email" required placeholder="you@example.com" />
+              <label for="buyerEmail">Email Address</label>
+              <input id="buyerEmail" type="email" required placeholder="you@example.com" />
             </div>
             <div class="field">
-              <label for="shipAddress">Shipping Address</label>
-              <input id="shipAddress" type="text" required placeholder="Street address, city, state, ZIP" />
+              <label for="buyerAddress">Shipping Address</label>
+              <input id="buyerAddress" type="text" required placeholder="Street address, city, state, ZIP" />
             </div>
 
-            <h3 class="section-subtitle">Select Payment Method</h3>
             <div class="payment-methods">
-              <button type="button" class="pm-option ${selectedPaymentMethod === "card" ? "selected" : ""}" onclick="selectPaymentMethod('card')">
-                <span class="pm-radio"></span>
+              <button type="button" class="pm-option ${paymentMethod === "card" ? "selected" : ""}" onclick="setPaymentMethod('card')">
                 <span>Credit / Debit Card</span>
               </button>
-              <button type="button" class="pm-option ${selectedPaymentMethod === "applepay" ? "selected" : ""}" onclick="selectPaymentMethod('applepay')">
-                <span class="pm-radio"></span>
+              <button type="button" class="pm-option ${paymentMethod === "applepay" ? "selected" : ""}" onclick="setPaymentMethod('applepay')">
                 <span>Apple Pay</span>
               </button>
-              <button type="button" class="pm-option ${selectedPaymentMethod === "paypal" ? "selected" : ""}" onclick="selectPaymentMethod('paypal')">
-                <span class="pm-radio"></span>
+              <button type="button" class="pm-option ${paymentMethod === "paypal" ? "selected" : ""}" onclick="setPaymentMethod('paypal')">
                 <span>PayPal</span>
               </button>
-              <button type="button" class="pm-option ${selectedPaymentMethod === "klarna" ? "selected" : ""}" onclick="selectPaymentMethod('klarna')">
-                <span class="pm-radio"></span>
+              <button type="button" class="pm-option ${paymentMethod === "installments" ? "selected" : ""}" onclick="setPaymentMethod('installments')">
                 <span>4 Interest-Free Payments</span>
               </button>
             </div>
 
-            <div class="pm-panel">
-              ${methodFieldsHtml}
-            </div>
+            <div class="pm-panel">${fieldsHtml}</div>
 
-            <button type="submit" class="btn-dark" style="width:100%; justify-content:center; padding:12px 18px;">
-              COMPLETE PAYMENT &bull; ${formatMoney(total)}
+            <button type="submit" class="btn-dark" style="width:100%; justify-content:center; padding:11px 18px;">
+              PAY ${formatMoney(total)} &rarr;
             </button>
           </form>
 
           <div class="summary-card">
-            <h3 class="section-subtitle" style="margin-bottom:12px;">Order Summary</h3>
+            <div style="font-family:Georgia, serif; font-size:16px; margin-bottom:10px;">Order Summary</div>
             ${bag.map(item => `
               <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border); font-size:12px;">
                 <span>${item.name} &times; ${item.qty}</span>
                 <strong>${formatMoney(item.price * item.qty)}</strong>
               </div>
             `).join("")}
-            <div class="summary-row">
-              <span style="color:var(--muted);">Subtotal</span>
-              <span>${formatMoney(subtotal)}</span>
-            </div>
-            <div class="summary-row">
+            <div style="display:flex; justify-content:space-between; margin-top:10px; font-size:12px;">
               <span style="color:var(--muted);">Shipping</span>
               <span>${shipping === 0 ? "FREE" : formatMoney(shipping)}</span>
             </div>
-            <div class="summary-total">
+            <div style="display:flex; justify-content:space-between; margin-top:12px; padding-top:10px; border-top:1px solid var(--border); font-weight:700; font-size:14px;">
               <span>Total</span>
               <span>${formatMoney(total)}</span>
             </div>
@@ -1127,37 +903,24 @@
       `;
     }
 
-    function submitOrder(e, total) {
+    function completePayment(e, total) {
       e.preventDefault();
-      const customerName = document.getElementById("shipName").value.trim();
-      const customerEmail = document.getElementById("shipEmail").value.trim();
-      const methodLabels = {
-        card: "Credit / Debit Card",
-        applepay: "Apple Pay",
-        paypal: "PayPal",
-        klarna: "4 Interest-Free Payments"
-      };
-      const orderNumber = "LB-" + Math.floor(100000 + Math.random() * 900000);
+      const name = document.getElementById("buyerName").value.trim();
+      const email = document.getElementById("buyerEmail").value.trim();
+      const orderId = "LB-" + Math.floor(100000 + Math.random() * 900000);
 
       bag = [];
       updateBagBadge();
 
       document.getElementById("paymentContainer").innerHTML = `
-        <div class="step-trail">
-          <span>1. Your Bag</span>
-          <span>&rsaquo;</span>
-          <span>2. Payment Method</span>
-          <span>&rsaquo;</span>
-          <span class="active-step">3. Confirmation</span>
-        </div>
-        <h2 style="font-weight:normal; margin-bottom:8px;">Thank You, ${customerName}</h2>
-        <p style="font-style:italic; color:var(--muted); margin-bottom:14px;">
-          Your order <strong>${orderNumber}</strong> has been confirmed.
+        <h2 style="font-weight:normal; margin-bottom:8px;">Order Confirmed</h2>
+        <p style="font-style:italic; color:var(--muted); margin-bottom:12px;">
+          Thank you, ${name}. Your order <strong>${orderId}</strong> (${formatMoney(total)}) is confirmed.
         </p>
-        <p style="font-family:system-ui, sans-serif; font-size:13px; color:var(--text); margin-bottom:20px;">
-          We received your payment of <strong>${formatMoney(total)}</strong> via <strong>${methodLabels[selectedPaymentMethod]}</strong>. A confirmation receipt has been sent to <strong>${customerEmail}</strong>.
+        <p style="font-family:system-ui, sans-serif; font-size:13px; margin-bottom:18px;">
+          Receipt sent to <strong>${email}</strong>.
         </p>
-        <button type="button" class="btn-dark" onclick="showView('home')">RETURN TO HOME &rarr;</button>
+        <button type="button" class="btn-dark" onclick="showView('home')">BACK TO BOUTIQUE &rarr;</button>
       `;
     }
 
