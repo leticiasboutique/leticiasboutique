@@ -361,7 +361,8 @@
       margin-bottom: 4px;
     }
 
-    .field input {
+    .field input,
+    .field select {
       width: 100%;
       padding: 9px 10px;
       border: 1px solid var(--border);
@@ -383,20 +384,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
       cursor: pointer;
       font-size: 14px;
-      transition: border-color 0.2s;
     }
 
-    .pay-option:hover { border-color: var(--accent); }
     .pay-option input { margin-right: 10px; }
-
-    .pay-badges {
-      font-size: 11px;
-      color: var(--muted);
-      text-align: right;
-    }
 
     .summary-line {
       display: flex;
@@ -421,7 +413,6 @@
       padding: 16px;
       margin-top: 16px;
       font-size: 13px;
-      line-height: 1.6;
     }
 
     /* Slide-Out Shopping Bag Drawer */
@@ -840,7 +831,7 @@
         <button data-view="home">Home</button> &rsaquo; <span>Checkout</span>
       </div>
 
-      <h2 class="section-heading">Checkout &amp; All Payment Options</h2>
+      <h2 class="section-heading">Checkout &amp; Payment</h2>
 
       <div class="checkout-layout">
         <form id="checkoutForm" class="panel">
@@ -860,35 +851,35 @@
             </div>
             <div class="field">
               <label for="custCity">City</label>
-              <input id="custCity" type="text" required placeholder="Lebanon" />
+              <input id="custCity" type="text" required placeholder="Nashville" />
             </div>
             <div class="field">
               <label for="custZip">State &amp; ZIP</label>
-              <input id="custZip" type="text" required placeholder="TN 37087" />
+              <input id="custZip" type="text" required placeholder="TN 37201" />
             </div>
           </div>
 
-          <h3>Choose Any Payment Method</h3>
+          <h3>Payment Method</h3>
           <div class="payment-methods">
             <label class="pay-option">
-              <span><input type="radio" name="payMethod" value="card_wallets" checked /> Credit / Debit Card &amp; Digital Wallets</span>
-              <span class="pay-badges">Visa • MC • Amex • Apple Pay • Google Pay</span>
+              <span><input type="radio" name="payMethod" value="card" checked /> Credit / Debit Card / Apple Pay / Google Pay</span>
+              <span>Stripe / Square</span>
             </label>
             <label class="pay-option">
-              <span><input type="radio" name="payMethod" value="bnpl" /> Buy Now, Pay Later (4 Interest-Free Payments)</span>
-              <span class="pay-badges">Klarna • Afterpay • Affirm</span>
+              <span><input type="radio" name="payMethod" value="bnpl" /> Buy Now, Pay Later</span>
+              <span>Klarna • Afterpay</span>
             </label>
             <label class="pay-option">
-              <span><input type="radio" name="payMethod" value="paypal_venmo" /> PayPal or Venmo</span>
-              <span class="pay-badges">Instant Balance or Bank</span>
+              <span><input type="radio" name="payMethod" value="paypal" /> PayPal / Venmo</span>
+              <span>Instant Checkout</span>
             </label>
             <label class="pay-option">
               <span><input type="radio" name="payMethod" value="cashapp" /> Cash App</span>
-              <span class="pay-badges">Instant Cashtag Transfer</span>
+              <span>Cashtag Transfer</span>
             </label>
             <label class="pay-option">
-              <span><input type="radio" name="payMethod" value="zelle" /> Zelle (Bank-to-Bank Transfer)</span>
-              <span class="pay-badges">Zero Fees • Direct to Bank</span>
+              <span><input type="radio" name="payMethod" value="zelle" /> Zelle</span>
+              <span>Bank Transfer</span>
             </label>
           </div>
 
@@ -946,18 +937,15 @@
   </aside>
 
   <script>
-    // =========================================================================
-    // CONNECT YOUR NEW BANK ACCOUNT HERE ONCE OPENED (TOMORROW OR NEXT DAY)
-    // =========================================================================
-    const STORE_PAYMENT_CONFIG = {
-      // 1. Create a free Stripe Payment Link (supports Cards, Apple Pay, Google Pay, Klarna, Afterpay, Cash App Pay)
-      stripePaymentLink: "https://buy.stripe.com/YOUR_STRIPE_LINK",
-      // 2. Your PayPal.Me link (supports PayPal + Venmo in the US)
-      paypalMeLink: "https://paypal.me/YOUR_PAYPAL_NAME",
-      // 3. Your Cash App link
-      cashAppLink: "https://cash.app/$YOUR_CASHTAG",
-      // 4. Your Zelle email or phone number linked to your new bank account
-      zelleRecipient: "your-email-or-phone@example.com"
+    // ============================================================
+    // 1. PASTE YOUR REAL PAYMENT LINKS HERE TO RECEIVE MONEY
+    // ============================================================
+    const PAYMENT_LINKS = {
+      card: "https://buy.stripe.com/YOUR_STRIPE_LINK",
+      bnpl: "https://buy.stripe.com/YOUR_BNPL_OR_STRIPE_LINK",
+      paypal: "https://paypal.me/YOUR_PAYPAL_NAME",
+      cashapp: "https://cash.app/$YOUR_CASHTAG",
+      zelle: "your-zelle-email-or-phone@example.com"
     };
 
     const catalog = {
@@ -1171,48 +1159,32 @@
       const total = (subtotal + shipping).toFixed(2);
       const name = document.getElementById("custName").value;
       const itemsText = [...bag.values()].map(i => `${i.qty}x ${i.name}`).join(", ");
-      const orderId = "LB-" + Math.floor(100000 + Math.random() * 900000);
+      const link = PAYMENT_LINKS[method];
 
       const confirmBox = document.getElementById("orderConfirmBox");
       confirmBox.style.display = "block";
 
       if (method === "zelle") {
         confirmBox.innerHTML = `
-          <strong>Order #${orderId} Reserved for ${name} — Total: $${total}</strong><br>
+          <strong>Order Ready for ${name} — Total: $${total}</strong><br>
           Items: ${itemsText}<br><br>
-          Send <strong>$${total}</strong> via <strong>Zelle</strong> to:<br>
-          <strong>${STORE_PAYMENT_CONFIG.zelleRecipient}</strong><br>
-          Include memo: <code>Order #${orderId}</code> so we can ship your order right away.
+          Send <strong>$${total}</strong> via <strong>Zelle</strong> to: <code>${link}</code>
         `;
         return;
       }
 
-      let rawLink = STORE_PAYMENT_CONFIG.stripePaymentLink;
-      let label = "Card / Digital Wallet";
-
-      if (method === "bnpl") {
-        rawLink = STORE_PAYMENT_CONFIG.stripePaymentLink;
-        label = "Klarna / Afterpay / Affirm";
-      } else if (method === "paypal_venmo") {
-        rawLink = STORE_PAYMENT_CONFIG.paypalMeLink;
-        label = "PayPal / Venmo";
-      } else if (method === "cashapp") {
-        rawLink = STORE_PAYMENT_CONFIG.cashAppLink;
-        label = "Cash App";
+      let finalPayUrl = link;
+      if ((method === "paypal" || method === "cashapp") && !link.includes("YOUR_")) {
+        finalPayUrl = `${link.replace(/\/$/, "")}/${total}`;
       }
 
-      let finalUrl = rawLink;
-      if ((method === "paypal_venmo" || method === "cashapp") && !rawLink.includes("YOUR_")) {
-        finalUrl = `${rawLink.replace(/\/$/, "")}/${total}`;
-      }
-
-      const isConfigured = !rawLink.includes("YOUR_");
+      const isConfigured = !link.includes("YOUR_");
       confirmBox.innerHTML = `
-        <strong>Order #${orderId} Ready for ${name} — Total: $${total}</strong><br>
+        <strong>Order Ready for ${name} — Total: $${total}</strong><br>
         Items: ${itemsText}<br><br>
         ${isConfigured
-          ? `<a href="${finalUrl}" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block; text-decoration:none;">Pay $${total} with ${label} &rsaquo;</a>`
-          : `Your checkout is live! Once you open your bank account tomorrow, paste your real link into <code>STORE_PAYMENT_CONFIG</code> at the top of the script to activate live payouts.`
+          ? `<a href="${finalPayUrl}" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block; text-decoration:none;">Proceed to ${method.toUpperCase()} Payment ($${total}) &rsaquo;</a>`
+          : `<em>Setup reminder:</em> Replace <code>PAYMENT_LINKS.${method}</code> in the script with your payment link once your bank account is set up.`
         }
       `;
     });
