@@ -1,183 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Leticia's Boutique</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <div class="announcement">
-    <span>‹</span>
-    FREE SHIPPING ON ORDERS OVER $75
-    <span>›</span>
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar" role="region" aria-label="Promotions">
+    <button class="announcement-btn" id="prevAnnouncement" aria-label="Previous announcement">&lsaquo;</button>
+    <div class="announcement-text" id="announcementText">Free shipping on orders over $75</div>
+    <button class="announcement-btn" id="nextAnnouncement" aria-label="Next announcement">&rsaquo;</button>
   </div>
 
+  <!-- Main Site Header -->
   <header class="site-header">
-    <div class="header-top">
-      <form class="search" action="#" onsubmit="return false">
-        <span>⌕</span>
-        <input type="search" placeholder="Search...">
-      </form>
+    <div class="header-inner">
+      <div class="header-top-row">
+        <div class="header-left">
+          <label class="search-pill" aria-label="Search boutique products">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="11" cy="11" r="7"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="globalSearchInput" placeholder="Search..." autocomplete="off" />
+            <button type="button" class="search-clear-btn" id="clearSearchBtn" aria-label="Clear search">&times;</button>
+          </label>
+        </div>
 
-      <a href="index.html" class="brand-name">Leticia's Boutique</a>
+        <button type="button" class="brand-logo" id="logoHomeBtn">Leticia's Boutique</button>
 
-      <div class="header-icons">
-        <a href="#" aria-label="Account">♙</a>
-        <a href="#" aria-label="Shopping bag">♧</a>
+        <div class="header-right">
+          <button type="button" class="icon-btn" id="accountBtn" aria-label="Account">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21a8 8 0 0 0-16 0"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </button>
+          <button type="button" class="icon-btn" id="openBagBtn" aria-label="Shopping Bag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M6 7h12l1 13H5L6 7z"></path>
+              <path d="M9 7V5a3 3 0 0 1 6 0v2"></path>
+            </svg>
+            <span class="bag-badge" id="bagCountBadge">0</span>
+          </button>
+        </div>
       </div>
-    </div>
 
-    <nav class="navigation">
-      <a href="index.html">Home</a>
-      <a href="jewelry.html">Jewelry</a>
-      <a href="fajas.html">Fajas</a>
-      <a href="perfume.html">Perfume</a>
-    </nav>
+      <nav class="header-subnav" aria-label="Primary Navigation">
+        <button type="button" class="nav-link active" data-view="home">Home</button>
+        <button type="button" class="nav-link" data-view="jewelry">Jewelry</button>
+        <button type="button" class="nav-link" data-view="fajas">Fajas</button>
+        <button type="button" class="nav-link" data-view="perfume">Perfume</button>
+      </nav>
+    </div>
   </header>
 
-  <main>
+  <!-- ==================== VIEW 1: HOME PAGE ==================== -->
+  <main id="view-home" class="page-view active">
+    <section class="home-hero">
+      <div class="home-hero-bg"></div>
+      <div class="home-hero-grid">
+        <div class="hero-models-visual" aria-hidden="true">
+          <div class="arch-backdrop"></div>
+          <div class="model-portrait-card model-portrait-1">
+            <span class="model-tag-pill">Satin Evening Edit</span>
+          </div>
+          <div class="model-portrait-card model-portrait-2">
+            <span class="model-tag-pill">Signature Silhouette</span>
+          </div>
+          <div class="model-portrait-card model-portrait-3">
+            <span class="model-tag-pill">Fine Gold &amp; Luxe</span>
+          </div>
+        </div>
 
-    <!-- MAIN FASHION CAMPAIGN -->
-
-    <section class="main-campaign">
-      <div class="campaign-photos">
-        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800"
-             alt="Fashion campaign model">
-        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800"
-             alt="Elegant fashion model">
-        <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=800"
-             alt="Boutique fashion model">
-      </div>
-
-      <div class="campaign-copy">
-        <h1>Leticia's<br>Boutique</h1>
-        <p>LUXURY · BEAUTY · STYLE</p>
-        <a href="#collections" class="brown-button">SHOP NOW →</a>
+        <div class="home-hero-copy">
+          <h1 class="home-hero-title">Leticia's<br>Boutique</h1>
+          <p class="home-hero-subtitle">LUXURY &bull; BEAUTY &bull; STYLE</p>
+          <button type="button" class="btn-espresso" id="heroShopNowBtn">SHOP NOW &rarr;</button>
+        </div>
       </div>
     </section>
 
-    <!-- CATEGORY COLLECTIONS -->
-
-    <section class="category-strip" id="collections">
-
-      <a href="jewelry.html" class="category-tile">
-        <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=600"
-             alt="Jewelry collection">
-        <div class="tile-copy">
-          <h2>Jewelry</h2>
-          <span>SHOP NOW →</span>
+    <section class="category-showcase">
+      <div class="container">
+        <div class="category-grid">
+          <button type="button" class="category-tile jewellery-bg" data-jump-view="jewelry">
+            <span class="category-tile-title">Jewellery</span>
+            <span class="category-tile-cta">SHOP NOW &rarr;</span>
+          </button>
+          <button type="button" class="category-tile fajas-bg" data-jump-view="fajas">
+            <span class="category-tile-title">Fajas</span>
+            <span class="category-tile-cta">SHOP NOW &rarr;</span>
+          </button>
+          <button type="button" class="category-tile perfume-bg" data-jump-view="perfume">
+            <span class="category-tile-title">Perfume</span>
+            <span class="category-tile-cta">SHOP NOW &rarr;</span>
+          </button>
         </div>
-      </a>
-
-      <a href="fajas.html" class="category-tile">
-        <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=600"
-             alt="Fashion and shapewear collection">
-        <div class="tile-copy">
-          <h2>Fajas</h2>
-          <span>SHOP NOW →</span>
-        </div>
-      </a>
-
-      <a href="perfume.html" class="category-tile">
-        <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600"
-             alt="Perfume collection">
-        <div class="tile-copy">
-          <h2>Perfume</h2>
-          <span>SHOP NOW →</span>
-        </div>
-      </a>
-
-    </section>
-
-    <!-- FEATURED PRODUCTS -->
-
-    <section class="favorites">
-      <div class="section-title">
-        <span></span>
-        <div>
-          <h2>Shop Our Favorites</h2>
-          <p>Elevate your everyday with our most loved pieces.</p>
-        </div>
-        <span></span>
-      </div>
-
-      <div class="favorite-grid">
-
-        <article class="product">
-          <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500"
-               alt="Gold jewelry">
-          <h3>Elegant Gold Jewelry</h3>
-          <p>Coming Soon</p>
-          <a href="jewelry.html" class="product-button">SHOP JEWELRY</a>
-        </article>
-
-        <article class="product">
-          <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=500"
-               alt="Luxury perfume">
-          <h3>Signature Perfume</h3>
-          <p>Coming Soon</p>
-          <a href="perfume.html" class="product-button">SHOP PERFUME</a>
-        </article>
-
-        <article class="product">
-          <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=500"
-               alt="Women's fashion">
-          <h3>Shaping Collection</h3>
-          <p>Coming Soon</p>
-          <a href="fajas.html" class="product-button">SHOP FAJAS</a>
-        </article>
-
-        <article class="product">
-          <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500"
-               alt="Elegant accessories">
-          <h3>Everyday Elegance</h3>
-          <p>Coming Soon</p>
-          <a href="jewelry.html" class="product-button">DISCOVER MORE</a>
-        </article>
-
       </div>
     </section>
 
-    <!-- FOUNDER / ABOUT SECTION -->
-
-    <section class="about-section">
-      <div class="about-photo">
-        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=900"
-             alt="Temporary boutique founder portrait">
-      </div>
-
-      <div class="about-copy">
-        <p class="small-heading">A LITTLE ABOUT US</p>
-        <h2>Welcome to<br>Leticia's Boutique</h2>
-        <p>
-          A place where elegance meets everyday beauty.
-          Discover carefully selected styles, beautiful
-          accessories, and fragrances that make every
-          moment feel special.
-        </p>
-        <p>
-          Our vision is to bring together confidence,
-          femininity, and timeless style in one place.
-        </p>
-        <a href="#collections" class="brown-button">EXPLORE THE BOUTIQUE →</a>
+    <section class="favorites-section" id="favoritesSection">
+      <div class="container">
+        <div class="section-header-center">
+          <h2 class="section-title-serif">Shop Our Favorites</h2>
+          <p class="section-subtitle-italic">Elevate your everyday with our most loved pieces.</p>
+        </div>
+        <div class="products-grid-4" id="favoritesGrid"></div>
       </div>
     </section>
-
   </main>
 
-  <footer class="site-footer">
-    <h2>Leticia's Boutique</h2>
-    <p>LUXURY · BEAUTY · STYLE</p>
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="jewelry.html">Jewelry</a>
-      <a href="fajas.html">Fajas</a>
-      <a href="perfume.html">Perfume</a>
+  <!-- ==================== VIEW 2: JEWELRY COLLECTION ==================== -->
+  <main id="view-jewelry" class="page-view">
+    <section class="collection-hero jewelry-hero">
+      <div class="collection-hero-inner">
+        <div class="collection-hero-copy">
+          <p class="collection-kicker">JEWELRY COLLECTION</p>
+          <h1 class="collection-hero-title">Timeless<br>Elegance</h1>
+          <p class="collection-hero-desc">Elevate your style with our stunning jewelry pieces.</p>
+          <button type="button" class="btn-espresso scroll-to-catalog-btn">SHOP THE COLLECTION &rarr;</button>
+        </div>
+        <div class="collection-hero-artwork" style="background: linear-gradient(145deg, #C6AE94 0%, #87664B 60%, #4E3827 100%);" aria-hidden="true">
+          <svg width="260" height="190" viewBox="0 0 260 190" fill="none">
+            <ellipse cx="130" cy="115" rx="84" ry="42" stroke="#F4D38C" stroke-width="11"/>
+            <ellipse cx="130" cy="108" rx="84" ry="42" stroke="#FFF3CC" stroke-width="3" stroke-dasharray="6 8"/>
+            <circle cx="88" cy="134" r="7" fill="#FFF7DC"/>
+            <circle cx="130" cy="156" r="8" fill="#FFF7DC"/>
+            <circle cx="172" cy="134" r="7" fill="#FFF7DC"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="catalog-toolbar">
+        <div class="breadcrumb">
+          <button type="button" class="crumb-home">Home</button>
+          <span>&rsaquo;</span>
+          <span>Jewelry</span>
+        </div>
+        <div class="sort-control">
+          <label for="sort-jewelry">Sort by</label>
+          <select id="sort-jewelry" class="sort-select" data-view-sort="jewelry">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="catalog-layout">
+        <aside class="filter-sidebar" id="sidebar-jewelry"></aside>
+        <div class="catalog-products-grid" id="grid-jewelry"></div>
+      </div>
     </div>
-    <p class="copyright">© 2026 Leticia's Boutique. All rights reserved.</p>
+  </main>
+
+  <!-- ==================== VIEW 3: FAJAS COLLECTION ==================== -->
+  <main id="view-fajas" class="page-view">
+    <section class="collection-hero fajas-hero">
+      <div class="collection-hero-inner">
+        <div class="collection-hero-copy">
+          <p class="collection-kicker">FAJAS COLLECTION</p>
+          <h1 class="collection-hero-title">Sculpted<br>Confidence</h1>
+          <p class="collection-hero-desc">Feel confident in every silhouette.</p>
+          <button type="button" class="btn-espresso scroll-to-catalog-btn">SHOP THE COLLECTION &rsaquo;</button>
+        </div>
+        <div class="collection-hero-artwork" style="background: linear-gradient(145deg, #DFC5AE 0%, #A67E62 60%, #5D4331 100%);" aria-hidden="true">
+          <svg width="240" height="210" viewBox="0 0 240 210" fill="none">
+            <path d="M92 32C92 32 103 44 120 44C137 44 148 32 148 32L156 82C143 96 142 114 155 130L164 182H132L120 144L108 182H76L85 130C98 114 97 96 84 82L92 32Z" fill="#E8C7AC" stroke="#B88E6E" stroke-width="2"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="catalog-toolbar">
+        <div class="breadcrumb">
+          <button type="button" class="crumb-home">Home</button>
+          <span>&rsaquo;</span>
+          <span>Fajas</span>
+        </div>
+        <div class="sort-control">
+          <label for="sort-fajas">Sort by</label>
+          <select id="sort-fajas" class="sort-select" data-view-sort="fajas">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="catalog-layout">
+        <aside class="filter-sidebar" id="sidebar-fajas"></aside>
+        <div class="catalog-products-grid" id="grid-fajas"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==================== VIEW 4: PERFUME COLLECTION ==================== -->
+  <main id="view-perfume" class="page-view">
+    <section class="collection-hero perfume-hero">
+      <div class="collection-hero-inner">
+        <div class="collection-hero-copy">
+          <p class="collection-kicker">FRAGRANCE COLLECTION</p>
+          <h1 class="collection-hero-title">Timeless<br>Scents</h1>
+          <p class="collection-hero-desc">Elevate your presence.</p>
+          <button type="button" class="btn-espresso scroll-to-catalog-btn">SHOP THE COLLECTION &rsaquo;</button>
+        </div>
+        <div class="collection-hero-artwork" style="background: linear-gradient(145deg, #F5DCD2 0%, #DDA99A 60%, #9E6E61 100%);" aria-hidden="true">
+          <svg width="240" height="200" viewBox="0 0 240 200" fill="none">
+            <circle cx="56" cy="130" r="24" fill="#F8C8C8" opacity="0.85"/>
+            <circle cx="192" cy="136" r="21" fill="#F5B8B8" opacity="0.8"/>
+            <rect x="88" y="64" width="68" height="92" rx="10" fill="#F6C5BE" stroke="#FFF5F2" stroke-width="2.5"/>
+            <rect x="108" y="46" width="28" height="18" rx="3" fill="#E8C38A"/>
+            <path d="M98 43C98 34 114 34 122 44C130 34 146 34 146 43C146 50 132 50 122 45C112 50 98 50 98 43Z" fill="#F2D19B"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="catalog-toolbar">
+        <div class="breadcrumb">
+          <button type="button" class="crumb-home">Home</button>
+          <span>&rsaquo;</span>
+          <span>Perfume</span>
+        </div>
+        <div class="sort-control">
+          <label for="sort-perfume">Sort by</label>
+          <select id="sort-perfume" class="sort-select" data-view-sort="perfume">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="catalog-layout">
+        <aside class="filter-sidebar" id="sidebar-perfume"></aside>
+        <div class="catalog-products-grid" id="grid-perfume"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand-serif">Leticia's Boutique</div>
+      <div class="footer-links">
+        <button type="button" data-info-modal="shipping">Shipping &amp; Returns</button>
+        <button type="button" data-info-modal="authenticity">Authenticity Guarantee</button>
+        <button type="button" data-info-modal="contact">Concierge</button>
+      </div>
+      <div class="footer-copy">&copy; 2026 Leticia's Boutique. Luxury &bull; Beauty &bull; Style.</div>
+    </div>
   </footer>
 
+  <!-- Slide-over Shopping Bag Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping Bag">
+    <div class="drawer-header">
+      <h2 class="drawer-title">Shopping Bag</h2>
+      <button type="button" class="icon-btn" id="closeBagBtn" aria-label="Close bag">&times;</button>
+    </div>
+
+    <div class="shipping-progress-box">
+      <div id="shippingStatusText">Add $75.00 more to unlock <strong>Free Shipping</strong></div>
+      <div class="shipping-bar-track">
+        <div class="shipping-bar-fill" id="shippingBarFill"></div>
+      </div>
+    </div>
+
+    <div class="drawer-items" id="drawerItems"></div>
+
+    <div class="drawer-footer">
+      <div class="subtotal-row">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">$0.00</span>
+      </div>
+      <p class="subtotal-note">Taxes and complimentary shipping calculated at checkout.</p>
+      <button type="button" class="btn-espresso" style="width: 100%;" id="checkoutBtn">PROCEED TO CHECKOUT</button>
+      <div class="checkout-confirm-banner" id="checkoutConfirmBanner">
+        Order placed! Thank you for shopping Leticia's Boutique.
+      </div>
+    </div>
+  </aside>
+
+  <!-- Account / Info Modal -->
+  <div class="modal-backdrop" id="infoModal">
+    <div class="modal-card">
+      <h3 id="modalTitle">Boutique Member</h3>
+      <p id="modalBody">Welcome to Leticia's Boutique. Sign in or track your orders anytime.</p>
+      <button type="button" class="btn-espresso" id="closeModalBtn">CLOSE</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
