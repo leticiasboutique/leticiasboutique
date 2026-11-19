@@ -925,20 +925,36 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target === infoModal) infoModal.classList.remove('open');
   });
 });
-// Complete Order Popup Handler
-function processOrder(event) {
+// Complete Order with Stripe Payment Validation
+async function processOrder(event) {
     event.preventDefault();
-    const modal = document.getElementById('order-modal');
-    if (modal) {
-        modal.style.display = 'flex';
-    }
-}
+    
+    // Check if Stripe and the card element exist on the page
+    if (typeof stripe !== 'undefined' && typeof cardElement !== 'undefined') {
+        const {token, error} = await top.stripe.createToken(cardElement);
 
-function closeOrderModal() {
-    const modal = document.getElementById('order-modal');
-    if (modal) {
-        modal.style.display = 'none';
+        if (error) {
+            // Show error if card info is invalid or missing
+            const errorElement = document.getElementById('card-errors');
+            if (errorElement) {
+                errorElement.textContent = error.message;
+            }
+        } else {
+            // Clear any errors and show the success confirmation popup
+            const errorElement = document.getElementById('card-errors');
+            if (errorElement) errorElement.textContent = '';
+            
+            const modal = document.getElementById('order-modal');
+            if (modal) {
+                modal.style.display = 'flex';
+            }
+        }
+    } else {
+        // Fallback if Stripe isn't fully loaded yet
+        const modal = document.getElementById('order-modal');
+        if (modal) {
+            modal.style.display = 'flex';
+        }
     }
-    switchView('home');
 }
 
