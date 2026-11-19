@@ -4,805 +4,305 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Leticia's Boutique</title>
-  <style>
-    :root {
-      --bg: #faf7f4;
-      --surface: #ffffff;
-      --text: #3b2d26;
-      --muted: #7c6b60;
-      --brown: #4d392f;
-      --brown-dark: #382820;
-      --promo-bg: #584339;
-      --border: #e6ddd5;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: Georgia, "Times New Roman", serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.45;
-    }
-
-    button, input {
-      font-family: inherit;
-      color: inherit;
-    }
-
-    button {
-      cursor: pointer;
-      border: none;
-      background: none;
-    }
-
-    .view { display: none; }
-    .view.active { display: block; }
-
-    /* Promo Bar */
-    .promo-bar {
-      background: var(--promo-bg);
-      color: #f6efe9;
-      font-family: Georgia, serif;
-      font-style: italic;
-      font-size: 12px;
-      padding: 6px 14px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    /* Header */
-    .site-header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 12px 24px 10px;
-    }
-
-    .header-top {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .search-box {
-      position: relative;
-      max-width: 190px;
-      width: 100%;
-    }
-
-    .search-box input {
-      width: 100%;
-      padding: 6px 10px 6px 28px;
-      border: 1px solid #dfd5cc;
-      border-radius: 3px;
-      background: #fdfcfb;
-      font-family: system-ui, sans-serif;
-      font-size: 11px;
-      color: var(--text);
-    }
-
-    .search-icon {
-      position: absolute;
-      left: 9px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 11px;
-      color: var(--muted);
-      pointer-events: none;
-    }
-
-    .brand-title {
-      font-size: clamp(22px, 3vw, 30px);
-      font-weight: normal;
-      letter-spacing: 0.2px;
-      text-align: center;
-      color: var(--text);
-    }
-
-    .header-right {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      gap: 12px;
-      font-family: system-ui, sans-serif;
-      font-size: 12px;
-    }
-
-    .icon-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px 6px;
-      color: var(--text);
-    }
-
-    .nav-row {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      margin-top: 6px;
-      font-family: Georgia, serif;
-      font-size: 13px;
-    }
-
-    .nav-link {
-      padding-bottom: 2px;
-      border-bottom: 1.5px solid transparent;
-      color: #4a3930;
-    }
-
-    .nav-link:hover,
-    .nav-link.active {
-      border-bottom-color: var(--brown);
-      font-weight: bold;
-    }
-
-    /* Hero Banner */
-    .hero-banner {
-      position: relative;
-      min-height: 360px;
-      background:
-        linear-gradient(90deg, rgba(235, 221, 207, 0.25) 0%, rgba(234, 219, 204, 0.55) 52%, rgba(228, 211, 194, 0.88) 100%),
-        linear-gradient(135deg, #d7c3b0 0%, #c5ab93 48%, #e4d2c1 100%);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 36px 40px;
-      overflow: hidden;
-    }
-
-    .hero-banner::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(circle at 22% 52%, rgba(82, 54, 42, 0.24) 0%, transparent 28%),
-        radial-gradient(circle at 43% 54%, rgba(112, 78, 58, 0.22) 0%, transparent 26%),
-        radial-gradient(circle at 61% 52%, rgba(74, 48, 38, 0.24) 0%, transparent 25%);
-      pointer-events: none;
-    }
-
-    .hero-spacer {
-      flex: 1;
-    }
-
-    .hero-copy {
-      position: relative;
-      z-index: 1;
-      max-width: 340px;
-      text-align: center;
-      margin-left: auto;
-    }
-
-    .hero-copy h1 {
-      font-size: clamp(32px, 4.4vw, 48px);
-      line-height: 1.06;
-      font-weight: normal;
-      color: #362720;
-      margin-bottom: 8px;
-    }
-
-    .hero-sub {
-      font-family: system-ui, sans-serif;
-      font-size: 10px;
-      letter-spacing: 2.4px;
-      text-transform: uppercase;
-      color: #6b584c;
-      margin-bottom: 16px;
-    }
-
-    .btn-dark {
-      background: var(--brown);
-      color: #fff;
-      font-family: system-ui, sans-serif;
-      font-size: 10px;
-      letter-spacing: 1.6px;
-      text-transform: uppercase;
-      padding: 9px 18px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .btn-dark:hover {
-      background: var(--brown-dark);
-    }
-
-    /* Main Container */
-    .page-wrap {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 22px 24px 48px;
-    }
-
-    /* 3-Column Category Cards */
-    .category-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 34px;
-    }
-
-    .cat-tile {
-      position: relative;
-      height: 150px;
-      overflow: hidden;
-      background: #e6d7c8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 14px;
-    }
-
-    .cat-tile.jewelry-bg {
-      background: linear-gradient(135deg, #d8bfa6 0%, #ead8c3 55%, #cbb094 100%);
-    }
-
-    .cat-tile.fajas-bg {
-      background: linear-gradient(135deg, #c9a68b 0%, #dfc2aa 55%, #b99377 100%);
-    }
-
-    .cat-tile.perfume-bg {
-      background: linear-gradient(135deg, #e5cbb8 0%, #f3e2d5 55%, #d6b69e 100%);
-    }
-
-    .cat-tile::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(45, 31, 24, 0.24);
-    }
-
-    .cat-tile span,
-    .cat-tile small {
-      position: relative;
-      z-index: 1;
-      color: #fff;
-      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
-    }
-
-    .cat-tile span {
-      font-size: 21px;
-      font-weight: normal;
-      margin-bottom: 3px;
-    }
-
-    .cat-tile small {
-      font-family: system-ui, sans-serif;
-      font-size: 9px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-
-    /* Shop Our Favorites Section */
-    .favorites-head {
-      text-align: center;
-      margin-bottom: 22px;
-    }
-
-    .favorites-head h2 {
-      font-size: 26px;
-      font-weight: normal;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-
-    .favorites-head p {
-      font-style: italic;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .favorites-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .fav-card {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .fav-img-box {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      background: #f5f2ef;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-      overflow: hidden;
-      padding: 12px;
-    }
-
-    .fav-img-box img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
-
-    .fav-visual {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: system-ui, sans-serif;
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .ring-bangle {
-      width: 96px;
-      height: 96px;
-      border-radius: 50%;
-      border: 11px solid #d4af5a;
-      box-shadow: inset 0 1px 4px rgba(255, 255, 255, 0.7), 0 4px 10px rgba(0, 0, 0, 0.08);
-    }
-
-    .perfume-flacon {
-      width: 68px;
-      height: 82px;
-      border-radius: 6px;
-      background: linear-gradient(180deg, rgba(248, 214, 218, 0.78) 0%, rgba(235, 185, 192, 0.88) 100%);
-      border: 1px solid #e2c7cc;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: Georgia, serif;
-      font-style: italic;
-      font-size: 11px;
-      color: #6f4b52;
-    }
-
-    .perfume-flacon::before {
-      content: "";
-      position: absolute;
-      top: -16px;
-      width: 24px;
-      height: 16px;
-      background: #e6d8dc;
-      border: 1px solid #cbb9bf;
-    }
-
-    .faja-silhouette {
-      width: 66px;
-      height: 104px;
-      background: #d8b598;
-      border-radius: 24px 24px 12px 12px;
-      box-shadow: inset -6px 0 10px rgba(120, 82, 54, 0.18);
-    }
-
-    .necklace-pendant {
-      position: relative;
-      width: 84px;
-      height: 96px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .chain-arc {
-      width: 72px;
-      height: 54px;
-      border-top: 1.5px solid #c9a252;
-      border-left: 1.5px solid #c9a252;
-      border-right: 1.5px solid #c9a252;
-      border-radius: 40px 40px 0 0;
-    }
-
-    .clover-charm {
-      width: 24px;
-      height: 24px;
-      border-radius: 6px;
-      background: #faf6f0;
-      border: 2px solid #c9a252;
-      transform: translateY(-4px);
-    }
-
-    .fav-title {
-      font-size: 12px;
-      color: var(--text);
-      margin-bottom: 2px;
-    }
-
-    .fav-price {
-      font-family: system-ui, sans-serif;
-      font-size: 11px;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    .fav-add-btn {
-      background: var(--brown);
-      color: #fff;
-      font-family: system-ui, sans-serif;
-      font-size: 9px;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      padding: 6px 14px;
-      min-width: 106px;
-    }
-
-    .fav-add-btn:hover {
-      background: var(--brown-dark);
-    }
-
-    /* Secondary Views (Category & Checkout) */
-    .sub-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 24px;
-      margin-top: 12px;
-    }
-
-    .back-link {
-      font-family: system-ui, sans-serif;
-      font-size: 12px;
-      color: var(--muted);
-      text-decoration: underline;
-      margin-bottom: 14px;
-      display: inline-block;
-    }
-
-    .checkout-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-top: 14px;
-      font-family: system-ui, sans-serif;
-      font-size: 13px;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      margin-bottom: 10px;
-    }
-
-    .field input {
-      padding: 8px 10px;
-      border: 1px solid var(--border);
-      font-family: system-ui, sans-serif;
-      font-size: 13px;
-    }
-
-    @media (max-width: 820px) {
-      .header-top {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-      .search-box {
-        max-width: 100%;
-      }
-      .header-right {
-        justify-content: center;
-      }
-      .hero-banner {
-        padding: 28px 20px;
-        min-height: 280px;
-      }
-      .hero-spacer {
-        display: none;
-      }
-      .hero-copy {
-        margin: 0 auto;
-      }
-      .category-row {
-        grid-template-columns: 1fr;
-      }
-      .favorites-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .checkout-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Top Promo Bar -->
-  <div class="promo-bar">
-    <button type="button" id="promoPrev" aria-label="Previous promotion">&lsaquo;</button>
-    <span id="promoText">Free shipping on orders over $75</span>
-    <button type="button" id="promoNext" aria-label="Next promotion">&rsaquo;</button>
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar" role="region" aria-label="Promotions">
+    <button class="announcement-btn" id="prevAnnouncement" aria-label="Previous announcement">&lsaquo;</button>
+    <div class="announcement-text" id="announcementText">Free shipping on orders over $75</div>
+    <button class="announcement-btn" id="nextAnnouncement" aria-label="Next announcement">&rsaquo;</button>
   </div>
 
-  <!-- Header -->
+  <!-- Main Site Header -->
   <header class="site-header">
-    <div class="header-top">
-      <div class="search-box">
-        <span class="search-icon">&#128269;</span>
-        <input type="search" id="searchInput" placeholder="Search..." aria-label="Search boutique items" />
+    <div class="header-inner">
+      <div class="header-top-row">
+        <div class="header-left">
+          <label class="search-pill" aria-label="Search boutique products">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="11" cy="11" r="7"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="globalSearchInput" placeholder="Search..." autocomplete="off" />
+            <button type="button" class="search-clear-btn" id="clearSearchBtn" aria-label="Clear search">&times;</button>
+          </label>
+        </div>
+
+        <button type="button" class="brand-logo" id="logoHomeBtn">Leticia's Boutique</button>
+
+        <div class="header-right">
+          <button type="button" class="icon-btn" id="accountBtn" aria-label="Account">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21a8 8 0 0 0-16 0"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </button>
+          <button type="button" class="icon-btn" id="openBagBtn" aria-label="Shopping Bag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M6 7h12l1 13H5L6 7z"></path>
+              <path d="M9 7V5a3 3 0 0 1 6 0v2"></path>
+            </svg>
+            <span class="bag-badge" id="bagCountBadge">0</span>
+          </button>
+        </div>
       </div>
 
-      <button type="button" class="brand-title" data-view="home">Leticia's Boutique</button>
-
-      <div class="header-right">
-        <button type="button" class="icon-btn" id="accountBtn" title="Account">&#128100;</button>
-        <button type="button" class="icon-btn" id="bagBtn" data-view="checkout" title="Shopping Bag">
-          &#128717; <span id="bagCount">0</span>
-        </button>
-      </div>
+      <nav class="header-subnav" aria-label="Primary Navigation">
+        <button type="button" class="nav-link active" data-view="home">Home</button>
+        <button type="button" class="nav-link" data-view="jewelry">Jewelry</button>
+        <button type="button" class="nav-link" data-view="fajas">Fajas</button>
+        <button type="button" class="nav-link" data-view="perfume">Perfume</button>
+      </nav>
     </div>
-
-    <nav class="nav-row" aria-label="Main Navigation">
-      <button type="button" class="nav-link" data-view="jewelry">Jewelry</button>
-      <button type="button" class="nav-link" data-view="fajas">Fajas</button>
-      <button type="button" class="nav-link" data-view="perfume">Perfume</button>
-    </nav>
   </header>
 
-  <!-- HOMEPAGE VIEW -->
-  <main id="view-home" class="view active">
-    <section class="hero-banner">
-      <div class="hero-spacer"></div>
-      <div class="hero-copy">
-        <h1>Leticia's<br>Boutique</h1>
-        <div class="hero-sub">LUXURY &bull; BEAUTY &bull; STYLE</div>
-        <button type="button" class="btn-dark" id="heroShopBtn">SHOP NOW &rarr;</button>
+  <!-- ==================== VIEW 1: HOME PAGE ==================== -->
+  <main id="view-home" class="page-view active">
+    <section class="home-hero">
+      <div class="home-hero-bg"></div>
+      <div class="home-hero-grid">
+        <div class="hero-models-visual" aria-hidden="true">
+          <div class="arch-backdrop"></div>
+          <div class="model-portrait-card model-portrait-1">
+            <span class="model-tag-pill">Satin Evening Edit</span>
+          </div>
+          <div class="model-portrait-card model-portrait-2">
+            <span class="model-tag-pill">Signature Silhouette</span>
+          </div>
+          <div class="model-portrait-card model-portrait-3">
+            <span class="model-tag-pill">Fine Gold &amp; Luxe</span>
+          </div>
+        </div>
+
+        <div class="home-hero-copy">
+          <h1 class="home-hero-title">Leticia's<br>Boutique</h1>
+          <p class="home-hero-subtitle">LUXURY &bull; BEAUTY &bull; STYLE</p>
+          <button type="button" class="btn-espresso" id="heroShopNowBtn">SHOP NOW &rarr;</button>
+        </div>
       </div>
     </section>
 
-    <div class="page-wrap">
-      <!-- 3 Category Cards -->
-      <section class="category-row" aria-label="Shop by Category">
-        <button type="button" class="cat-tile jewelry-bg" data-view="jewelry">
-          <span>Jewelry</span>
-          <small>SHOP NOW &rarr;</small>
-        </button>
-
-        <button type="button" class="cat-tile fajas-bg" data-view="fajas">
-          <span>Fajas</span>
-          <small>SHOP NOW &rarr;</small>
-        </button>
-
-        <button type="button" class="cat-tile perfume-bg" data-view="perfume">
-          <span>Perfume</span>
-          <small>SHOP NOW &rarr;</small>
-        </button>
-      </section>
-
-      <!-- Shop Our Favorites -->
-      <section aria-labelledby="favoritesHeading">
-        <div class="favorites-head">
-          <h2 id="favoritesHeading">Shop Our Favorites</h2>
-          <p>Elevate your everyday with our most loved pieces.</p>
+    <section class="category-showcase">
+      <div class="container">
+        <div class="category-grid">
+          <button type="button" class="category-tile jewellery-bg" data-jump-view="jewelry">
+            <span class="category-tile-title">Jewellery</span>
+            <span class="category-tile-cta">SHOP NOW &rarr;</span>
+          </button>
+          <button type="button" class="category-tile fajas-bg" data-jump-view="fajas">
+            <span class="category-tile-title">Fajas</span>
+            <span class="category-tile-cta">SHOP NOW &rarr;</span>
+          </button>
+          <button type="button" class="category-tile perfume-bg" data-jump-view="perfume">
+            <span class="category-tile-title">Perfume</span>
+            <span class="category-tile-cta">SHOP NOW &rarr;</span>
+          </button>
         </div>
+      </div>
+    </section>
 
-        <div class="favorites-grid" id="favoritesGrid"></div>
-      </section>
+    <section class="favorites-section" id="favoritesSection">
+      <div class="container">
+        <div class="section-header-center">
+          <h2 class="section-title-serif">Shop Our Favorites</h2>
+          <p class="section-subtitle-italic">Elevate your everyday with our most loved pieces.</p>
+        </div>
+        <div class="products-grid-4" id="favoritesGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== VIEW 2: JEWELRY COLLECTION ==================== -->
+  <main id="view-jewelry" class="page-view">
+    <section class="collection-hero jewelry-hero">
+      <div class="collection-hero-inner">
+        <div class="collection-hero-copy">
+          <p class="collection-kicker">JEWELRY COLLECTION</p>
+          <h1 class="collection-hero-title">Timeless<br>Elegance</h1>
+          <p class="collection-hero-desc">Elevate your style with our stunning jewelry pieces.</p>
+          <button type="button" class="btn-espresso scroll-to-catalog-btn">SHOP THE COLLECTION &rarr;</button>
+        </div>
+        <div class="collection-hero-artwork" style="background: linear-gradient(145deg, #C6AE94 0%, #87664B 60%, #4E3827 100%);" aria-hidden="true">
+          <svg width="260" height="190" viewBox="0 0 260 190" fill="none">
+            <ellipse cx="130" cy="115" rx="84" ry="42" stroke="#F4D38C" stroke-width="11"/>
+            <ellipse cx="130" cy="108" rx="84" ry="42" stroke="#FFF3CC" stroke-width="3" stroke-dasharray="6 8"/>
+            <circle cx="88" cy="134" r="7" fill="#FFF7DC"/>
+            <circle cx="130" cy="156" r="8" fill="#FFF7DC"/>
+            <circle cx="172" cy="134" r="7" fill="#FFF7DC"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="catalog-toolbar">
+        <div class="breadcrumb">
+          <button type="button" class="crumb-home">Home</button>
+          <span>&rsaquo;</span>
+          <span>Jewelry</span>
+        </div>
+        <div class="sort-control">
+          <label for="sort-jewelry">Sort by</label>
+          <select id="sort-jewelry" class="sort-select" data-view-sort="jewelry">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="catalog-layout">
+        <aside class="filter-sidebar" id="sidebar-jewelry"></aside>
+        <div class="catalog-products-grid" id="grid-jewelry"></div>
+      </div>
     </div>
   </main>
 
-  <!-- CATEGORY VIEWS -->
-  <section id="view-jewelry" class="view">
-    <div class="page-wrap">
-      <button type="button" class="back-link" data-view="home">&larr; Back to Home</button>
-      <div class="sub-box">
-        <h2>Jewelry</h2>
-        <p style="color:var(--muted); margin-top:6px;">Explore bracelets, necklaces, and statement pieces.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="view-fajas" class="view">
-    <div class="page-wrap">
-      <button type="button" class="back-link" data-view="home">&larr; Back to Home</button>
-      <div class="sub-box">
-        <h2>Fajas</h2>
-        <p style="color:var(--muted); margin-top:6px;">Sculpting bodysuits, cinchers, and shapers.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="view-perfume" class="view">
-    <div class="page-wrap">
-      <button type="button" class="back-link" data-view="home">&larr; Back to Home</button>
-      <div class="sub-box">
-        <h2>Perfume</h2>
-        <p style="color:var(--muted); margin-top:6px;">Signature eaux de parfum and fine fragrances.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CHECKOUT VIEW -->
-  <section id="view-checkout" class="view">
-    <div class="page-wrap">
-      <button type="button" class="back-link" data-view="home">&larr; Continue Shopping</button>
-      <div class="sub-box" id="checkoutContainer"></div>
-    </div>
-  </section>
-
-  <script>
-    const favorites = [
-      {
-        id: "cartier-love",
-        name: "Cartier Love Bracelet",
-        price: 6750.00,
-        img: "images/cartier-love-bracelet.jpg",
-        visualClass: "ring-bangle",
-        visualText: ""
-      },
-      {
-        id: "miss-dior",
-        name: "Miss Dior Eau de Parfum",
-        price: 145.00,
-        img: "images/miss-dior-parfum.jpg",
-        visualClass: "perfume-flacon",
-        visualText: "Miss Dior"
-      },
-      {
-        id: "faja-colombiana",
-        name: "Faja Colombiana",
-        price: 69.99,
-        img: "images/faja-colombiana.jpg",
-        visualClass: "faja-silhouette",
-        visualText: ""
-      },
-      {
-        id: "van-cleef",
-        name: "Van Cleef Necklace",
-        price: 2350.00,
-        img: "images/van-cleef-necklace.jpg",
-        visualClass: "necklace-pendant",
-        visualText: ""
-      }
-    ];
-
-    const promos = [
-      "Free shipping on orders over $75",
-      "New arrivals in Fajas, Jewelry & Perfume"
-    ];
-    let promoIdx = 0;
-    let bag = [];
-
-    function showView(name) {
-      document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
-      const target = document.getElementById(`view-${name}`);
-      if (target) target.classList.add("active");
-
-      document.querySelectorAll(".nav-link").forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.view === name);
-      });
-
-      if (name === "checkout") renderCheckout();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    function renderFavorites(filterText = "") {
-      const q = filterText.trim().toLowerCase();
-      const list = favorites.filter(item => !q || item.name.toLowerCase().includes(q));
-      const grid = document.getElementById("favoritesGrid");
-
-      grid.innerHTML = list.map(item => `
-        <article class="fav-card">
-          <div class="fav-img-box">
-            <img
-              src="${item.img}"
-              alt="${item.name}"
-              onload="this.nextElementSibling.style.display='none';"
-              onerror="this.style.display='none';"
-            />
-            <div class="fav-visual">
-              <div class="${item.visualClass}">${item.visualText}</div>
-            </div>
-          </div>
-          <div class="fav-title">${item.name}</div>
-          <div class="fav-price">$${item.price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
-          <button type="button" class="fav-add-btn" onclick="addToBag('${item.id}')">ADD TO CART</button>
-        </article>
-      `).join("");
-    }
-
-    function addToBag(id) {
-      const product = favorites.find(p => p.id === id);
-      if (!product) return;
-      const existing = bag.find(i => i.id === id);
-      if (existing) {
-        existing.qty += 1;
-      } else {
-        bag.push({ ...product, qty: 1 });
-      }
-      document.getElementById("bagCount").textContent = bag.reduce((s, i) => s + i.qty, 0);
-    }
-
-    function renderCheckout() {
-      const box = document.getElementById("checkoutContainer");
-      if (bag.length === 0) {
-        box.innerHTML = `<p style="color:var(--muted);">Your bag is currently empty.</p>`;
-        return;
-      }
-
-      const subtotal = bag.reduce((s, i) => s + i.price * i.qty, 0);
-      const shipping = subtotal >= 75 ? 0 : 6.99;
-      const total = subtotal + shipping;
-
-      box.innerHTML = `
-        <h2>Bag &amp; Checkout</h2>
-        <div class="checkout-grid">
-          <div>
-            ${bag.map(item => `
-              <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border);">
-                <span>${item.name} &times; ${item.qty}</span>
-                <strong>$${(item.price * item.qty).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>
-              </div>
-            `).join("")}
-            <div style="display:flex; justify-content:space-between; margin-top:12px;">
-              <span>Shipping</span>
-              <span>${shipping === 0 ? "FREE" : "$" + shipping.toFixed(2)}</span>
-            </div>
-            <div style="display:flex; justify-content:space-between; margin-top:10px; font-size:15px;">
-              <strong>Total</strong>
-              <strong>$${total.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>
-            </div>
-          </div>
-
-          <form onsubmit="submitOrder(event, ${total})">
-            <div class="field">
-              <label>Full Name</label>
-              <input type="text" required placeholder="Your full name" />
-            </div>
-            <div class="field">
-              <label>Card Number</label>
-              <input type="text" inputmode="numeric" required placeholder="1234 5678 9012 3456" />
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-              <div class="field">
-                <label>MM/YY</label>
-                <input type="text" required placeholder="09/28" />
-              </div>
-              <div class="field">
-                <label>CVC</label>
-                <input type="text" required placeholder="123" />
-              </div>
-            </div>
-            <button type="submit" class="btn-dark" style="width:100%; justify-content:center; margin-top:6px;">
-              PAY $${total.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-            </button>
-          </form>
+  <!-- ==================== VIEW 3: FAJAS COLLECTION ==================== -->
+  <main id="view-fajas" class="page-view">
+    <section class="collection-hero fajas-hero">
+      <div class="collection-hero-inner">
+        <div class="collection-hero-copy">
+          <p class="collection-kicker">FAJAS COLLECTION</p>
+          <h1 class="collection-hero-title">Sculpted<br>Confidence</h1>
+          <p class="collection-hero-desc">Feel confident in every silhouette.</p>
+          <button type="button" class="btn-espresso scroll-to-catalog-btn">SHOP THE COLLECTION &rsaquo;</button>
         </div>
-      `;
-    }
+        <div class="collection-hero-artwork" style="background: linear-gradient(145deg, #DFC5AE 0%, #A67E62 60%, #5D4331 100%);" aria-hidden="true">
+          <svg width="240" height="210" viewBox="0 0 240 210" fill="none">
+            <path d="M92 32C92 32 103 44 120 44C137 44 148 32 148 32L156 82C143 96 142 114 155 130L164 182H132L120 144L108 182H76L85 130C98 114 97 96 84 82L92 32Z" fill="#E8C7AC" stroke="#B88E6E" stroke-width="2"/>
+          </svg>
+        </div>
+      </div>
+    </section>
 
-    function submitOrder(e, total) {
-      e.preventDefault();
-      bag = [];
-      document.getElementById("bagCount").textContent = "0";
-      document.getElementById("checkoutContainer").innerHTML = `
-        <h2>Order Confirmed</h2>
-        <p style="margin-top:8px; color:var(--muted);">
-          Thank you for shopping at Leticia's Boutique. Your payment of $${total.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} has been received.
-        </p>
-      `;
-    }
+    <div class="container">
+      <div class="catalog-toolbar">
+        <div class="breadcrumb">
+          <button type="button" class="crumb-home">Home</button>
+          <span>&rsaquo;</span>
+          <span>Fajas</span>
+        </div>
+        <div class="sort-control">
+          <label for="sort-fajas">Sort by</label>
+          <select id="sort-fajas" class="sort-select" data-view-sort="fajas">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
 
-    document.querySelectorAll("[data-view]").forEach(el => {
-      el.addEventListener("click", () => showView(el.dataset.view));
-    });
+      <div class="catalog-layout">
+        <aside class="filter-sidebar" id="sidebar-fajas"></aside>
+        <div class="catalog-products-grid" id="grid-fajas"></div>
+      </div>
+    </div>
+  </main>
 
-    document.getElementById("heroShopBtn").addEventListener("click", () => showView("fajas"));
-    document.getElementById("searchInput").addEventListener("input", e => renderFavorites(e.target.value));
-    document.getElementById("promoPrev").addEventListener("click", () => {
-      promoIdx = (promoIdx - 1 + promos.length) % promos.length;
-      document.getElementById("promoText").textContent = promos[promoIdx];
-    });
-    document.getElementById("promoNext").addEventListener("click", () => {
-      promoIdx = (promoIdx + 1) % promos.length;
-      document.getElementById("promoText").textContent = promos[promoIdx];
-    });
+  <!-- ==================== VIEW 4: PERFUME COLLECTION ==================== -->
+  <main id="view-perfume" class="page-view">
+    <section class="collection-hero perfume-hero">
+      <div class="collection-hero-inner">
+        <div class="collection-hero-copy">
+          <p class="collection-kicker">FRAGRANCE COLLECTION</p>
+          <h1 class="collection-hero-title">Timeless<br>Scents</h1>
+          <p class="collection-hero-desc">Elevate your presence.</p>
+          <button type="button" class="btn-espresso scroll-to-catalog-btn">SHOP THE COLLECTION &rsaquo;</button>
+        </div>
+        <div class="collection-hero-artwork" style="background: linear-gradient(145deg, #F5DCD2 0%, #DDA99A 60%, #9E6E61 100%);" aria-hidden="true">
+          <svg width="240" height="200" viewBox="0 0 240 200" fill="none">
+            <circle cx="56" cy="130" r="24" fill="#F8C8C8" opacity="0.85"/>
+            <circle cx="192" cy="136" r="21" fill="#F5B8B8" opacity="0.8"/>
+            <rect x="88" y="64" width="68" height="92" rx="10" fill="#F6C5BE" stroke="#FFF5F2" stroke-width="2.5"/>
+            <rect x="108" y="46" width="28" height="18" rx="3" fill="#E8C38A"/>
+            <path d="M98 43C98 34 114 34 122 44C130 34 146 34 146 43C146 50 132 50 122 45C112 50 98 50 98 43Z" fill="#F2D19B"/>
+          </svg>
+        </div>
+      </div>
+    </section>
 
-    renderFavorites();
-  </script>
+    <div class="container">
+      <div class="catalog-toolbar">
+        <div class="breadcrumb">
+          <button type="button" class="crumb-home">Home</button>
+          <span>&rsaquo;</span>
+          <span>Perfume</span>
+        </div>
+        <div class="sort-control">
+          <label for="sort-perfume">Sort by</label>
+          <select id="sort-perfume" class="sort-select" data-view-sort="perfume">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="catalog-layout">
+        <aside class="filter-sidebar" id="sidebar-perfume"></aside>
+        <div class="catalog-products-grid" id="grid-perfume"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand-serif">Leticia's Boutique</div>
+      <div class="footer-links">
+        <button type="button" data-info-modal="shipping">Shipping &amp; Returns</button>
+        <button type="button" data-info-modal="authenticity">Authenticity Guarantee</button>
+        <button type="button" data-info-modal="contact">Concierge</button>
+      </div>
+      <div class="footer-copy">&copy; 2026 Leticia's Boutique. Luxury &bull; Beauty &bull; Style.</div>
+    </div>
+  </footer>
+
+  <!-- Slide-over Shopping Bag Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping Bag">
+    <div class="drawer-header">
+      <h2 class="drawer-title">Shopping Bag</h2>
+      <button type="button" class="icon-btn" id="closeBagBtn" aria-label="Close bag">&times;</button>
+    </div>
+
+    <div class="shipping-progress-box">
+      <div id="shippingStatusText">Add $75.00 more to unlock <strong>Free Shipping</strong></div>
+      <div class="shipping-bar-track">
+        <div class="shipping-bar-fill" id="shippingBarFill"></div>
+      </div>
+    </div>
+
+    <div class="drawer-items" id="drawerItems"></div>
+
+    <div class="drawer-footer">
+      <div class="subtotal-row">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">$0.00</span>
+      </div>
+      <p class="subtotal-note">Taxes and complimentary shipping calculated at checkout.</p>
+      <button type="button" class="btn-espresso" style="width: 100%;" id="checkoutBtn">PROCEED TO CHECKOUT</button>
+      <div class="checkout-confirm-banner" id="checkoutConfirmBanner">
+        Order placed! Thank you for shopping Leticia's Boutique.
+      </div>
+    </div>
+  </aside>
+
+  <!-- Account / Info Modal -->
+  <div class="modal-backdrop" id="infoModal">
+    <div class="modal-card">
+      <h3 id="modalTitle">Boutique Member</h3>
+      <p id="modalBody">Welcome to Leticia's Boutique. Sign in or track your orders anytime.</p>
+      <button type="button" class="btn-espresso" id="closeModalBtn">CLOSE</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
