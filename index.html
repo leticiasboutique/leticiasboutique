@@ -57,9 +57,6 @@
       justify-content: space-between;
       gap: 16px;
       flex-wrap: wrap;
-      position: sticky;
-      top: 0;
-      z-index: 20;
     }
 
     .nav-links {
@@ -99,13 +96,10 @@
     .cart-pill {
       background: var(--accent);
       color: #fff;
-      padding: 7px 14px;
+      padding: 6px 12px;
       border-radius: 999px;
       font-weight: 600;
-      transition: background 0.2s;
     }
-
-    .cart-pill:hover { background: var(--accent-hover); }
 
     /* Hero Banner */
     .hero {
@@ -164,7 +158,7 @@
       font-size: 13px;
     }
 
-    /* Main Container & Category Grid */
+    /* Homepage Category Grid */
     .container {
       max-width: 1160px;
       margin: 0 auto;
@@ -215,7 +209,7 @@
       object-fit: cover;
     }
 
-    /* Collection Catalog View */
+    /* Fajas Catalog View */
     .breadcrumb {
       font-family: system-ui, sans-serif;
       font-size: 12px;
@@ -295,7 +289,6 @@
       font-family: system-ui, sans-serif;
       font-size: 12px;
       color: var(--muted);
-      overflow: hidden;
     }
 
     .product-title {
@@ -317,194 +310,33 @@
       font-family: system-ui, sans-serif;
       font-size: 11px;
       letter-spacing: 1px;
-      padding: 9px;
-      transition: background 0.2s;
+      padding: 8px;
     }
 
     .add-btn:hover { background: var(--accent-hover); }
 
-    /* Checkout View */
+    /* Checkout Page Styles */
     .checkout-layout {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 1.15fr 1fr;
       gap: 28px;
       align-items: start;
-    }
-
-    .panel {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 24px;
       font-family: system-ui, sans-serif;
     }
 
-    .panel h3 {
-      font-family: Georgia, serif;
-      font-size: 20px;
-      font-weight: normal;
-      margin-bottom: 16px;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .form-full { grid-column: 1 / -1; }
-
-    .field label {
-      display: block;
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 4px;
-    }
-
-    .field input,
-    .field select {
-      width: 100%;
-      padding: 9px 10px;
-      border: 1px solid var(--border);
-      background: #fff;
-      font-size: 14px;
-      color: var(--text);
-    }
-
-    .payment-methods {
-      display: grid;
-      gap: 10px;
-      margin: 14px 0 20px;
-    }
-
-    .pay-option {
-      border: 1px solid var(--border);
-      background: #fff;
-      padding: 12px 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    .pay-option input { margin-right: 10px; }
-
-    .summary-line {
-      display: flex;
-      justify-content: space-between;
-      font-size: 14px;
-      padding: 8px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .summary-total {
-      display: flex;
-      justify-content: space-between;
-      font-size: 17px;
-      font-weight: 700;
-      padding-top: 14px;
-    }
-
-    .order-confirm-box {
-      display: none;
-      background: #efe7df;
-      border: 1px solid var(--accent);
-      padding: 16px;
-      margin-top: 16px;
-      font-size: 13px;
-    }
-
-    /* Slide-Out Shopping Bag Drawer */
-    .drawer-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(34, 24, 19, 0.5);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-      z-index: 40;
-    }
-
-    .drawer-backdrop.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .cart-drawer {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: min(390px, 92vw);
-      height: 100vh;
+    .checkout-panel {
       background: var(--surface);
-      border-left: 1px solid var(--border);
-      box-shadow: -12px 0 32px rgba(34, 24, 19, 0.18);
-      transform: translateX(100%);
-      transition: transform 0.28s ease;
-      z-index: 50;
-      display: flex;
-      flex-direction: column;
-      font-family: system-ui, sans-serif;
+      border: 1px solid var(--border);
+      padding: 22px;
     }
 
-    .cart-drawer.open { transform: translateX(0); }
-
-    .drawer-header {
-      padding: 18px 20px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .drawer-header h3 {
-      font-family: Georgia, serif;
-      font-size: 20px;
+    .checkout-panel h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 19px;
       font-weight: normal;
-    }
-
-    .close-drawer {
-      font-size: 24px;
-      line-height: 1;
-      padding: 4px 8px;
-      color: var(--muted);
-    }
-
-    .shipping-banner {
-      background: #efe7df;
-      padding: 10px 20px;
-      font-size: 12px;
-      color: var(--text);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
       border-bottom: 1px solid var(--border);
-    }
-
-    .shipping-track {
-      height: 5px;
-      background: #ddd1c5;
-      border-radius: 999px;
-      margin-top: 6px;
-      overflow: hidden;
-    }
-
-    .shipping-fill {
-      height: 100%;
-      width: 0%;
-      background: var(--accent);
-      transition: width 0.25s ease;
-    }
-
-    .drawer-items {
-      flex: 1;
-      overflow-y: auto;
-      padding: 16px 20px;
-    }
-
-    .empty-bag {
-      text-align: center;
-      color: var(--muted);
-      padding: 48px 12px;
-      font-size: 14px;
     }
 
     .bag-item {
@@ -514,75 +346,130 @@
       gap: 12px;
       padding: 12px 0;
       border-bottom: 1px solid var(--border);
+      font-size: 14px;
     }
 
-    .bag-item-info strong {
-      display: block;
-      font-family: Georgia, serif;
-      font-weight: normal;
-      font-size: 15px;
-    }
-
-    .bag-item-info span {
-      font-size: 12px;
+    .bag-item-meta {
       color: var(--muted);
+      font-size: 12px;
     }
 
     .qty-controls {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 8px;
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      background: var(--bg);
+      font-size: 13px;
     }
 
     .qty-btn {
-      width: 24px;
-      height: 24px;
-      border: 1px solid var(--border);
-      background: #fff;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-weight: 700;
+      padding: 2px 5px;
     }
 
     .remove-link {
-      font-size: 11px;
       color: var(--muted);
+      font-size: 12px;
       text-decoration: underline;
-      margin-left: 4px;
+      margin-left: 8px;
     }
 
-    .drawer-footer {
-      padding: 18px 20px;
-      border-top: 1px solid var(--border);
-      background: #f3ece5;
-    }
-
-    .subtotal-row {
+    .summary-line {
       display: flex;
       justify-content: space-between;
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 12px;
+      margin-top: 12px;
+      font-size: 14px;
     }
 
-    .checkout-btn {
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .form-section-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      font-weight: 600;
+      margin: 14px 0 8px;
+    }
+
+    .form-section-label:first-child { margin-top: 0; }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 12px;
+      font-size: 13px;
+    }
+
+    .form-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field input {
+      width: 100%;
+      padding: 9px 11px;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      font-family: system-ui, sans-serif;
+      font-size: 13px;
+    }
+
+    .form-field input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .pay-btn {
       width: 100%;
       background: var(--accent);
       color: #fff;
-      padding: 12px;
+      font-family: system-ui, sans-serif;
       font-size: 12px;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.4px;
       text-transform: uppercase;
+      padding: 13px;
+      margin-top: 6px;
+      font-weight: 600;
     }
 
-    .checkout-btn:hover { background: var(--accent-hover); }
+    .pay-btn:hover { background: var(--accent-hover); }
+
+    .order-confirmation {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 28px;
+      font-family: system-ui, sans-serif;
+    }
+
+    .order-confirmation h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      font-weight: normal;
+      margin-bottom: 8px;
+    }
 
     @media (max-width: 760px) {
-      .catalog-layout,
+      .catalog-layout { grid-template-columns: 1fr; }
       .checkout-layout { grid-template-columns: 1fr; }
       .hero { flex-direction: column; text-align: center; }
-      .form-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -606,7 +493,7 @@
 
     <div class="header-actions">
       <span id="statusMsg">Viewing Home</span>
-      <button class="cart-pill" id="openBagBtn">Bag (<span id="cartCount">0</span>)</button>
+      <button class="cart-pill" id="cartBtn">Bag (<span id="cartCount">0</span>)</button>
     </div>
   </header>
 
@@ -614,14 +501,13 @@
   <section id="view-home" class="view active">
     <div class="hero">
       <div>
-        <div class="hero-tag">Leticia's Boutique</div>
+        <div class="hero-tag">Fajas Collection</div>
         <h1>Sculpted<br>Confidence</h1>
-        <p>Feel confident in every silhouette, scent, and detail.</p>
-        <button class="btn-primary" data-view="fajas">Shop The Collection &rsaquo;</button>
+        <p>Feel confident in every silhouette.</p>
+        <button class="btn-primary" id="shopCollectionBtn">Shop The Collection &rsaquo;</button>
       </div>
       <div class="hero-badge">
-        <strong>Explore Our Collections</strong><br>
-        Click <strong>Fajas</strong>, <strong>Jewelry</strong>, or <strong>Perfume</strong> to browse right here on the page.
+        <strong>Click "Fajas"</strong> in the menu or click the button to open the Fajas collection right here on the page.
       </div>
     </div>
 
@@ -629,27 +515,21 @@
       <h2 class="section-heading">Shop by Category</h2>
       <div class="category-grid">
         <button class="category-card" data-view="fajas">
-          <div class="thumb-box">
-            <img src="images/seamless-bodysuit.jpg" alt="Fajas" onerror="this.style.display='none'; this.parentNode.textContent='Fajas Collection';">
-          </div>
+          <div class="thumb-box">Fajas Preview</div>
           <strong>Fajas</strong>
           <p class="product-price">Bodysuits, waist cinchers &amp; shapers</p>
         </button>
 
         <button class="category-card" data-view="jewelry">
-          <div class="thumb-box">
-            <img src="images/gold-hoops.jpg" alt="Jewelry" onerror="this.style.display='none'; this.parentNode.textContent='Jewelry Collection';">
-          </div>
+          <div class="thumb-box">Jewelry Preview</div>
           <strong>Jewelry</strong>
-          <p class="product-price">Necklaces, hoops, bracelets &amp; rings</p>
+          <p class="product-price">Earrings, necklaces &amp; bracelets</p>
         </button>
 
         <button class="category-card" data-view="perfume">
-          <div class="thumb-box">
-            <img src="images/velvet-vanilla.jpg" alt="Perfume" onerror="this.style.display='none'; this.parentNode.textContent='Perfume Collection';">
-          </div>
+          <div class="thumb-box">Perfume Preview</div>
           <strong>Perfume</strong>
-          <p class="product-price">Eau de parfum, body mists &amp; gift sets</p>
+          <p class="product-price">Signature scents &amp; body mists</p>
         </button>
       </div>
     </div>
@@ -680,20 +560,21 @@
       <div class="catalog-layout">
         <aside>
           <h3 class="section-heading" style="font-size:18px; margin-bottom:14px;">Filter By</h3>
+
           <div class="filter-group">
             <h4>Category</h4>
-            <label><input type="checkbox" class="filter-cat" data-collection="fajas" value="Waist Cinchers"> Waist Cinchers</label>
-            <label><input type="checkbox" class="filter-cat" data-collection="fajas" value="Bodysuits"> Bodysuits</label>
-            <label><input type="checkbox" class="filter-cat" data-collection="fajas" value="Full Body Shapers"> Full Body Shapers</label>
-            <label><input type="checkbox" class="filter-cat" data-collection="fajas" value="Shorts"> Shorts</label>
+            <label><input type="checkbox" class="faja-filter" value="Waist Cinchers"> Waist Cinchers</label>
+            <label><input type="checkbox" class="faja-filter" value="Bodysuits"> Bodysuits</label>
+            <label><input type="checkbox" class="faja-filter" value="Full Body Shapers"> Full Body Shapers</label>
+            <label><input type="checkbox" class="faja-filter" value="Shorts"> Shorts</label>
           </div>
 
           <div class="filter-group">
             <h4>Price</h4>
-            <label><input type="checkbox" class="filter-price" data-collection="fajas" value="under25"> Under $25</label>
-            <label><input type="checkbox" class="filter-price" data-collection="fajas" value="25to50"> $25–$50</label>
-            <label><input type="checkbox" class="filter-price" data-collection="fajas" value="50to75"> $50–$75</label>
-            <label><input type="checkbox" class="filter-price" data-collection="fajas" value="over75"> Over $75</label>
+            <label><input type="checkbox" class="price-filter" value="under25"> Under $25</label>
+            <label><input type="checkbox" class="price-filter" value="25to50"> $25–$50</label>
+            <label><input type="checkbox" class="price-filter" value="50to75"> $50–$75</label>
+            <label><input type="checkbox" class="price-filter" value="over75"> Over $75</label>
           </div>
 
           <div class="filter-group">
@@ -712,277 +593,57 @@
     </div>
   </section>
 
-  <!-- JEWELRY VIEW -->
-  <section id="view-jewelry" class="view">
-    <div class="hero">
-      <div>
-        <div class="hero-tag">Jewelry Collection</div>
-        <h1>Golden<br>Radiance</h1>
-        <p>Timeless pieces designed to elevate every look.</p>
-        <button class="btn-primary" onclick="document.getElementById('jewelryGrid').scrollIntoView({ behavior: 'smooth' })">
-          Shop The Collection &rsaquo;
-        </button>
-      </div>
-      <div class="hero-badge">
-        <strong>Jewelry Collection</strong><br>
-        18k gold-plated essentials, hoops &amp; layered chains.
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="breadcrumb">
-        <button data-view="home">Home</button> &rsaquo; <span>Jewelry</span>
-      </div>
-
-      <div class="catalog-layout">
-        <aside>
-          <h3 class="section-heading" style="font-size:18px; margin-bottom:14px;">Filter By</h3>
-          <div class="filter-group">
-            <h4>Category</h4>
-            <label><input type="checkbox" class="filter-cat" data-collection="jewelry" value="Necklaces"> Necklaces</label>
-            <label><input type="checkbox" class="filter-cat" data-collection="jewelry" value="Earrings"> Earrings</label>
-            <label><input type="checkbox" class="filter-cat" data-collection="jewelry" value="Bracelets"> Bracelets</label>
-            <label><input type="checkbox" class="filter-cat" data-collection="jewelry" value="Rings"> Rings</label>
-          </div>
-
-          <div class="filter-group">
-            <h4>Price</h4>
-            <label><input type="checkbox" class="filter-price" data-collection="jewelry" value="under25"> Under $25</label>
-            <label><input type="checkbox" class="filter-price" data-collection="jewelry" value="25to50"> $25–$50</label>
-            <label><input type="checkbox" class="filter-price" data-collection="jewelry" value="50to75"> $50–$75</label>
-            <label><input type="checkbox" class="filter-price" data-collection="jewelry" value="over75"> Over $75</label>
-          </div>
-
-          <div class="filter-group">
-            <h4>Finish</h4>
-            <div class="swatch-row">
-              <span class="swatch" style="background:#d4af37;"></span>
-              <span class="swatch" style="background:#e5e4e2;"></span>
-              <span class="swatch" style="background:#e0bfb8;"></span>
-            </div>
-          </div>
-        </aside>
-
-        <div id="jewelryGrid" class="product-grid"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PERFUME VIEW -->
-  <section id="view-perfume" class="view">
-    <div class="hero">
-      <div>
-        <div class="hero-tag">Perfume Collection</div>
-        <h1>Signature<br>Allure</h1>
-        <p>Unforgettable scents that linger from day to night.</p>
-        <button class="btn-primary" onclick="document.getElementById('perfumeGrid').scrollIntoView({ behavior: 'smooth' })">
-          Shop The Collection &rsaquo;
-        </button>
-      </div>
-      <div class="hero-badge">
-        <strong>Perfume Collection</strong><br>
-        Warm vanilla, floral musk &amp; amber blends.
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="breadcrumb">
-        <button data-view="home">Home</button> &rsaquo; <span>Perfume</span>
-      </div>
-
-      <div class="catalog-layout">
-        <aside>
-          <h3 class="section-heading" style="font-size:18px; margin-bottom:14px;">Filter By</h3>
-          <div class="filter-group">
-            <h4>Category</h4>
-            <label><input type="checkbox" class="filter-cat" data-collection="perfume" value="Eau de Parfum"> Eau de Parfum</label>
-            <label><input type="checkbox" class="filter-cat" data-collection="perfume" value="Body Mist"> Body Mist</label>
-            <label><input type="checkbox" class="filter-cat" data-collection="perfume" value="Rollerball"> Rollerball</label>
-            <label><input type="checkbox" class="filter-cat" data-collection="perfume" value="Gift Sets"> Gift Sets</label>
-          </div>
-
-          <div class="filter-group">
-            <h4>Price</h4>
-            <label><input type="checkbox" class="filter-price" data-collection="perfume" value="under25"> Under $25</label>
-            <label><input type="checkbox" class="filter-price" data-collection="perfume" value="25to50"> $25–$50</label>
-            <label><input type="checkbox" class="filter-price" data-collection="perfume" value="50to75"> $50–$75</label>
-            <label><input type="checkbox" class="filter-price" data-collection="perfume" value="over75"> Over $75</label>
-          </div>
-
-          <div class="filter-group">
-            <h4>Notes</h4>
-            <div class="swatch-row">
-              <span class="swatch" style="background:#f3e5ab;" title="Vanilla"></span>
-              <span class="swatch" style="background:#e8b4b8;" title="Floral"></span>
-              <span class="swatch" style="background:#b5651d;" title="Amber"></span>
-            </div>
-          </div>
-        </aside>
-
-        <div id="perfumeGrid" class="product-grid"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CHECKOUT & PAYMENT VIEW -->
+  <!-- CHECKOUT VIEW -->
   <section id="view-checkout" class="view">
     <div class="container">
       <div class="breadcrumb">
-        <button data-view="home">Home</button> &rsaquo; <span>Checkout</span>
+        <button data-view="home">Home</button> &rsaquo; <button data-view="fajas">Fajas</button> &rsaquo; <span>Checkout</span>
       </div>
 
-      <h2 class="section-heading">Checkout &amp; Payment</h2>
+      <h2 class="section-heading">Your Bag &amp; Checkout</h2>
 
-      <div class="checkout-layout">
-        <form id="checkoutForm" class="panel">
-          <h3>Shipping Details</h3>
-          <div class="form-grid">
-            <div class="field">
-              <label for="custName">Full Name</label>
-              <input id="custName" type="text" required placeholder="Maria Rodriguez" />
-            </div>
-            <div class="field">
-              <label for="custEmail">Email for Receipt</label>
-              <input id="custEmail" type="email" required placeholder="maria@example.com" />
-            </div>
-            <div class="field form-full">
-              <label for="custAddress">Street Address</label>
-              <input id="custAddress" type="text" required placeholder="123 Main St, Apt 4B" />
-            </div>
-            <div class="field">
-              <label for="custCity">City</label>
-              <input id="custCity" type="text" required placeholder="Nashville" />
-            </div>
-            <div class="field">
-              <label for="custZip">State &amp; ZIP</label>
-              <input id="custZip" type="text" required placeholder="TN 37201" />
-            </div>
-          </div>
-
-          <h3>Payment Method</h3>
-          <div class="payment-methods">
-            <label class="pay-option">
-              <span><input type="radio" name="payMethod" value="card" checked /> Credit / Debit Card / Apple Pay / Google Pay</span>
-              <span>Stripe / Square</span>
-            </label>
-            <label class="pay-option">
-              <span><input type="radio" name="payMethod" value="bnpl" /> Buy Now, Pay Later</span>
-              <span>Klarna • Afterpay</span>
-            </label>
-            <label class="pay-option">
-              <span><input type="radio" name="payMethod" value="paypal" /> PayPal / Venmo</span>
-              <span>Instant Checkout</span>
-            </label>
-            <label class="pay-option">
-              <span><input type="radio" name="payMethod" value="cashapp" /> Cash App</span>
-              <span>Cashtag Transfer</span>
-            </label>
-            <label class="pay-option">
-              <span><input type="radio" name="payMethod" value="zelle" /> Zelle</span>
-              <span>Bank Transfer</span>
-            </label>
-          </div>
-
-          <button type="submit" class="checkout-btn" id="payNowBtn">Complete Payment</button>
-
-          <div id="orderConfirmBox" class="order-confirm-box"></div>
-        </form>
-
-        <div class="panel">
-          <h3>Order Summary</h3>
-          <div id="checkoutItemsList"></div>
-          <div class="summary-line">
-            <span>Subtotal</span>
-            <span id="coSubtotal">$0.00</span>
-          </div>
-          <div class="summary-line">
-            <span>Shipping</span>
-            <span id="coShipping">$6.99</span>
-          </div>
-          <div class="summary-total">
-            <span>Total Due</span>
-            <span id="coTotal">$0.00</span>
-          </div>
-        </div>
-      </div>
+      <div id="checkoutContent"></div>
     </div>
   </section>
 
-  <!-- SLIDE-OUT SHOPPING BAG DRAWER -->
-  <div id="drawerBackdrop" class="drawer-backdrop"></div>
-  <aside id="cartDrawer" class="cart-drawer" aria-label="Shopping Bag">
-    <div class="drawer-header">
-      <h3>Your Bag</h3>
-      <button id="closeBagBtn" class="close-drawer" aria-label="Close Bag">&times;</button>
+  <!-- JEWELRY & PERFUME PLACEHOLDER VIEWS -->
+  <section id="view-jewelry" class="view">
+    <div class="container">
+      <div class="breadcrumb"><button data-view="home">Home</button> &rsaquo; <span>Jewelry</span></div>
+      <h2 class="section-heading">Jewelry Collection</h2>
+      <p>Add your jewelry items here, or click <strong>Fajas</strong> in the top bar to jump straight to Fajas.</p>
     </div>
+  </section>
 
-    <div class="shipping-banner">
-      <div id="shippingText">Add $75.00 more for free shipping</div>
-      <div class="shipping-track">
-        <div id="shippingFill" class="shipping-fill"></div>
-      </div>
+  <section id="view-perfume" class="view">
+    <div class="container">
+      <div class="breadcrumb"><button data-view="home">Home</button> &rsaquo; <span>Perfume</span></div>
+      <h2 class="section-heading">Perfume Collection</h2>
+      <p>Add your perfume items here, or click <strong>Fajas</strong> in the top bar to jump straight to Fajas.</p>
     </div>
-
-    <div id="bagItems" class="drawer-items">
-      <div class="empty-bag">Your bag is currently empty.</div>
-    </div>
-
-    <div class="drawer-footer">
-      <div class="subtotal-row">
-        <span>Subtotal</span>
-        <span id="bagSubtotal">$0.00</span>
-      </div>
-      <button class="checkout-btn" id="checkoutBtn">Checkout</button>
-    </div>
-  </aside>
+  </section>
 
   <script>
-    // ============================================================
-    // PASTE YOUR REAL PAYMENT LINKS HERE TO RECEIVE MONEY
-    // ============================================================
-    const PAYMENT_LINKS = {
-      card: "https://buy.stripe.com/YOUR_STRIPE_LINK",
-      bnpl: "https://buy.stripe.com/YOUR_BNPL_OR_STRIPE_LINK",
-      paypal: "https://paypal.me/YOUR_PAYPAL_NAME",
-      cashapp: "https://cash.app/$YOUR_CASHTAG",
-      zelle: "your-zelle-email-or-phone@example.com"
-    };
+    const fajaProducts = [
+      { name: "Seamless Bodysuit", price: 34.99, category: "Bodysuits", img: "images/seamless-bodysuit.jpg" },
+      { name: "Waist Cincher", price: 29.99, category: "Waist Cinchers", img: "images/waist-cincher.jpg" },
+      { name: "Shaping Shorts", price: 32.99, category: "Shorts", img: "images/shaping-shorts-tan.jpg" },
+      { name: "Sculpting Bodysuit", price: 36.99, category: "Bodysuits", img: "images/sculpting-bodysuit.jpg" },
+      { name: "Waist Trainer", price: 39.99, category: "Waist Cinchers", img: "images/waist-trainer.jpg" },
+      { name: "Shaping Shorts", price: 32.99, category: "Shorts", img: "images/shaping-shorts-brown.jpg" },
+      { name: "Seamless Thong Bodysuit", price: 34.99, category: "Bodysuits", img: "images/thong-bodysuit.jpg" },
+      { name: "Full Body Shaper", price: 44.99, category: "Full Body Shapers", img: "images/full-body-shaper.jpg" }
+    ];
 
-    const catalog = {
-      fajas: [
-        { id: "faja-1", name: "Seamless Bodysuit", price: 34.99, category: "Bodysuits", img: "images/seamless-bodysuit.jpg" },
-        { id: "faja-2", name: "Waist Cincher", price: 29.99, category: "Waist Cinchers", img: "images/waist-cincher.jpg" },
-        { id: "faja-3", name: "Shaping Shorts (Tan)", price: 32.99, category: "Shorts", img: "images/shaping-shorts-tan.jpg" },
-        { id: "faja-4", name: "Sculpting Bodysuit", price: 36.99, category: "Bodysuits", img: "images/sculpting-bodysuit.jpg" },
-        { id: "faja-5", name: "Waist Trainer", price: 39.99, category: "Waist Cinchers", img: "images/waist-trainer.jpg" },
-        { id: "faja-6", name: "Shaping Shorts (Cocoa)", price: 32.99, category: "Shorts", img: "images/shaping-shorts-brown.jpg" },
-        { id: "faja-7", name: "Seamless Thong Bodysuit", price: 34.99, category: "Bodysuits", img: "images/thong-bodysuit.jpg" },
-        { id: "faja-8", name: "Full Body Shaper", price: 44.99, category: "Full Body Shapers", img: "images/full-body-shaper.jpg" }
-      ],
-      jewelry: [
-        { id: "jewel-1", name: "18k Gold Sculpted Hoops", price: 28.99, category: "Earrings", img: "images/gold-hoops.jpg" },
-        { id: "jewel-2", name: "Layered Herringbone Chain", price: 38.99, category: "Necklaces", img: "images/herringbone-chain.jpg" },
-        { id: "jewel-3", name: "Dainty Tennis Bracelet", price: 34.99, category: "Bracelets", img: "images/tennis-bracelet.jpg" },
-        { id: "jewel-4", name: "Signet Dome Ring", price: 24.99, category: "Rings", img: "images/dome-ring.jpg" },
-        { id: "jewel-5", name: "Pearl Drop Earrings", price: 29.99, category: "Earrings", img: "images/pearl-drops.jpg" },
-        { id: "jewel-6", name: "Initial Medallion Pendant", price: 32.99, category: "Necklaces", img: "images/medallion-pendant.jpg" },
-        { id: "jewel-7", name: "Clover Charm Bracelet", price: 31.99, category: "Bracelets", img: "images/clover-bracelet.jpg" },
-        { id: "jewel-8", name: "Twisted Stackable Band", price: 22.99, category: "Rings", img: "images/stackable-band.jpg" }
-      ],
-      perfume: [
-        { id: "perf-1", name: "Velvet Vanilla Eau de Parfum", price: 54.99, category: "Eau de Parfum", img: "images/velvet-vanilla.jpg" },
-        { id: "perf-2", name: "Rose & Cashmere Mist", price: 24.99, category: "Body Mist", img: "images/rose-mist.jpg" },
-        { id: "perf-3", name: "Golden Amber Elixir", price: 62.99, category: "Eau de Parfum", img: "images/golden-amber.jpg" },
-        { id: "perf-4", name: "Sweet Musk Rollerball", price: 19.99, category: "Rollerball", img: "images/musk-rollerball.jpg" },
-        { id: "perf-5", name: "Midnight Jasmine Parfum", price: 58.99, category: "Eau de Parfum", img: "images/midnight-jasmine.jpg" },
-        { id: "perf-6", name: "Coconut Silk Body Mist", price: 22.99, category: "Body Mist", img: "images/coconut-mist.jpg" },
-        { id: "perf-7", name: "Signature Discovery Trio", price: 48.99, category: "Gift Sets", img: "images/discovery-trio.jpg" },
-        { id: "perf-8", name: "Santal Bloom Rollerball", price: 21.99, category: "Rollerball", img: "images/santal-rollerball.jpg" }
-      ]
-    };
+    let cartItems = [];
 
-    const allProducts = [...catalog.fajas, ...catalog.jewelry, ...catalog.perfume];
-    const bag = new Map();
+    function getTotalCount() {
+      return cartItems.reduce((sum, item) => sum + item.qty, 0);
+    }
+
+    function updateBagBadge() {
+      document.getElementById("cartCount").textContent = getTotalCount();
+    }
 
     function openView(viewName) {
       document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
@@ -993,119 +654,21 @@
         btn.classList.toggle("active", btn.dataset.view === viewName);
       });
 
-      document.getElementById("statusMsg").textContent =
-        `Viewing ${viewName.charAt(0).toUpperCase() + viewName.slice(1)}`;
+      const label = viewName === "checkout" ? "Checkout" : viewName.charAt(0).toUpperCase() + viewName.slice(1);
+      document.getElementById("statusMsg").textContent = `Viewing ${label}`;
+
+      if (viewName === "checkout") {
+        renderCheckout();
+      }
+
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    function openBag() {
-      document.getElementById("cartDrawer").classList.add("open");
-      document.getElementById("drawerBackdrop").classList.add("open");
-    }
+    function renderFajas() {
+      const selectedCats = [...document.querySelectorAll(".faja-filter:checked")].map(el => el.value);
+      const selectedPrices = [...document.querySelectorAll(".price-filter:checked")].map(el => el.value);
 
-    function closeBag() {
-      document.getElementById("cartDrawer").classList.remove("open");
-      document.getElementById("drawerBackdrop").classList.remove("open");
-    }
-
-    function getSubtotal() {
-      let subtotal = 0;
-      bag.forEach(item => { subtotal += item.price * item.qty; });
-      return subtotal;
-    }
-
-    function addToCart(productId) {
-      const product = allProducts.find(p => p.id === productId);
-      if (!product) return;
-
-      const existing = bag.get(productId);
-      if (existing) {
-        existing.qty += 1;
-      } else {
-        bag.set(productId, { ...product, qty: 1 });
-      }
-
-      renderBag();
-      openBag();
-    }
-
-    function updateQty(productId, delta) {
-      const item = bag.get(productId);
-      if (!item) return;
-
-      item.qty += delta;
-      if (item.qty <= 0) bag.delete(productId);
-      renderBag();
-      renderCheckoutSummary();
-    }
-
-    function renderBag() {
-      const container = document.getElementById("bagItems");
-      let totalItems = 0;
-      bag.forEach(item => { totalItems += item.qty; });
-      const subtotal = getSubtotal();
-
-      document.getElementById("cartCount").textContent = totalItems;
-      document.getElementById("bagSubtotal").textContent = `$${subtotal.toFixed(2)}`;
-
-      const remaining = Math.max(0, 75 - subtotal);
-      const pct = Math.min(100, (subtotal / 75) * 100);
-      document.getElementById("shippingFill").style.width = `${pct}%`;
-      document.getElementById("shippingText").textContent =
-        remaining === 0
-          ? "You unlocked FREE shipping!"
-          : `Add $${remaining.toFixed(2)} more for free shipping`;
-
-      if (bag.size === 0) {
-        container.innerHTML = `<div class="empty-bag">Your bag is currently empty.</div>`;
-        return;
-      }
-
-      container.innerHTML = [...bag.values()].map(item => `
-        <div class="bag-item">
-          <div class="bag-item-info">
-            <strong>${item.name}</strong>
-            <span>$${item.price.toFixed(2)} each</span>
-          </div>
-          <div class="qty-controls">
-            <button class="qty-btn" onclick="updateQty('${item.id}', -1)">&minus;</button>
-            <span>${item.qty}</span>
-            <button class="qty-btn" onclick="updateQty('${item.id}', 1)">+</button>
-            <button class="remove-link" onclick="updateQty('${item.id}', -${item.qty})">Remove</button>
-          </div>
-        </div>
-      `).join("");
-    }
-
-    function renderCheckoutSummary() {
-      const subtotal = getSubtotal();
-      const shipping = subtotal >= 75 || subtotal === 0 ? 0 : 6.99;
-      const total = subtotal + shipping;
-
-      document.getElementById("checkoutItemsList").innerHTML =
-        bag.size === 0
-          ? `<p style="color:var(--muted); font-size:13px; margin-bottom:10px;">No items in bag yet.</p>`
-          : [...bag.values()].map(item => `
-              <div class="summary-line">
-                <span>${item.qty} &times; ${item.name}</span>
-                <span>$${(item.price * item.qty).toFixed(2)}</span>
-              </div>
-            `).join("");
-
-      document.getElementById("coSubtotal").textContent = `$${subtotal.toFixed(2)}`;
-      document.getElementById("coShipping").textContent = shipping === 0 ? "FREE" : `$${shipping.toFixed(2)}`;
-      document.getElementById("coTotal").textContent = `$${total.toFixed(2)}`;
-      document.getElementById("payNowBtn").textContent = `Pay $${total.toFixed(2)} Now`;
-    }
-
-    function renderCollection(collectionName) {
-      const items = catalog[collectionName] || [];
-      const selectedCats = [...document.querySelectorAll(`.filter-cat[data-collection="${collectionName}"]:checked`)]
-        .map(el => el.value);
-      const selectedPrices = [...document.querySelectorAll(`.filter-price[data-collection="${collectionName}"]:checked`)]
-        .map(el => el.value);
-
-      const filtered = items.filter(item => {
+      const filtered = fajaProducts.filter(item => {
         const catMatch = selectedCats.length === 0 || selectedCats.includes(item.category);
         const priceMatch = selectedPrices.length === 0 || selectedPrices.some(range => {
           if (range === "under25") return item.price < 25;
@@ -1117,7 +680,7 @@
         return catMatch && priceMatch;
       });
 
-      const grid = document.getElementById(`${collectionName}Grid`);
+      const grid = document.getElementById("fajasGrid");
       grid.innerHTML = filtered.map(p => `
         <div class="product-card">
           <div>
@@ -1128,74 +691,187 @@
             <div class="product-title">${p.name}</div>
             <div class="product-price">$${p.price.toFixed(2)}</div>
           </div>
-          <button class="add-btn" onclick="addToCart('${p.id}')">ADD TO CART</button>
+          <button class="add-btn" onclick="addToCart('${p.name}')">ADD TO CART</button>
         </div>
       `).join("");
+    }
+
+    function addToCart(name) {
+      const product = fajaProducts.find(p => p.name === name);
+      if (!product) return;
+
+      const existing = cartItems.find(item => item.name === product.name && item.price === product.price);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cartItems.push({ name: product.name, price: product.price, category: product.category, qty: 1 });
+      }
+
+      updateBagBadge();
+      document.getElementById("statusMsg").textContent = `Added ${name} to bag`;
+    }
+
+    function changeQty(index, delta) {
+      if (!cartItems[index]) return;
+      cartItems[index].qty += delta;
+      if (cartItems[index].qty <= 0) {
+        cartItems.splice(index, 1);
+      }
+      updateBagBadge();
+      renderCheckout();
+    }
+
+    function removeItem(index) {
+      cartItems.splice(index, 1);
+      updateBagBadge();
+      renderCheckout();
+    }
+
+    function renderCheckout() {
+      const container = document.getElementById("checkoutContent");
+
+      if (cartItems.length === 0) {
+        container.innerHTML = `
+          <div class="checkout-panel" style="text-align:center; padding:36px 24px;">
+            <p style="margin-bottom:16px; color:var(--muted);">Your bag is currently empty.</p>
+            <button class="btn-primary" onclick="openView('fajas')">Browse Fajas Collection &rsaquo;</button>
+          </div>
+        `;
+        return;
+      }
+
+      const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
+      const shipping = subtotal >= 75 ? 0 : 6.99;
+      const total = subtotal + shipping;
+
+      const itemsHtml = cartItems.map((item, idx) => `
+        <div class="bag-item">
+          <div>
+            <div><strong>${item.name}</strong></div>
+            <div class="bag-item-meta">${item.category} &middot; $${item.price.toFixed(2)} each</div>
+          </div>
+          <div style="display:flex; align-items:center;">
+            <div class="qty-controls">
+              <button type="button" class="qty-btn" onclick="changeQty(${idx}, -1)">-</button>
+              <span>${item.qty}</span>
+              <button type="button" class="qty-btn" onclick="changeQty(${idx}, 1)">+</button>
+            </div>
+            <span style="min-width:66px; text-align:right; font-weight:600; margin-left:10px;">
+              $${(item.price * item.qty).toFixed(2)}
+            </span>
+            <button type="button" class="remove-link" onclick="removeItem(${idx})">Remove</button>
+          </div>
+        </div>
+      `).join("");
+
+      container.innerHTML = `
+        <div class="checkout-layout">
+          <div class="checkout-panel">
+            <h3>Order Summary (${getTotalCount()})</h3>
+            ${itemsHtml}
+            <div class="summary-line">
+              <span>Subtotal</span>
+              <span>$${subtotal.toFixed(2)}</span>
+            </div>
+            <div class="summary-line">
+              <span>Shipping ${subtotal >= 75 ? "(Free over $75)" : ""}</span>
+              <span>${shipping === 0 ? "FREE" : "$" + shipping.toFixed(2)}</span>
+            </div>
+            <div class="summary-total">
+              <span>Total</span>
+              <span>$${total.toFixed(2)}</span>
+            </div>
+          </div>
+
+          <form id="paymentForm" class="checkout-panel" onsubmit="handleCheckoutSubmit(event)">
+            <h3>Shipping &amp; Payment</h3>
+
+            <div class="form-section-label">Contact &amp; Shipping</div>
+            <div class="form-grid">
+              <div class="form-field full">
+                <label for="custName">Full Name</label>
+                <input id="custName" type="text" required placeholder="Leticia Morales" />
+              </div>
+              <div class="form-field full">
+                <label for="custEmail">Email Address</label>
+                <input id="custEmail" type="email" required placeholder="you@example.com" />
+              </div>
+              <div class="form-field full">
+                <label for="custAddress">Street Address</label>
+                <input id="custAddress" type="text" required placeholder="123 Main St, Apt 4B" />
+              </div>
+              <div class="form-field">
+                <label for="custCity">City</label>
+                <input id="custCity" type="text" required placeholder="Lebanon" />
+              </div>
+              <div class="form-field">
+                <label for="custZip">ZIP / Postal Code</label>
+                <input id="custZip" type="text" required placeholder="37087" />
+              </div>
+            </div>
+
+            <div class="form-section-label">Card Information</div>
+            <div class="form-grid">
+              <div class="form-field full">
+                <label for="cardName">Name on Card</label>
+                <input id="cardName" type="text" required placeholder="Name on card" />
+              </div>
+              <div class="form-field full">
+                <label for="cardNumber">Card Number</label>
+                <input id="cardNumber" type="text" inputmode="numeric" maxlength="19" required placeholder="1234 5678 9012 3456" />
+              </div>
+              <div class="form-field">
+                <label for="cardExpiry">Expiration (MM/YY)</label>
+                <input id="cardExpiry" type="text" inputmode="numeric" maxlength="5" required placeholder="08/28" />
+              </div>
+              <div class="form-field">
+                <label for="cardCvc">Security Code (CVC)</label>
+                <input id="cardCvc" type="text" inputmode="numeric" maxlength="4" required placeholder="123" />
+              </div>
+            </div>
+
+            <button type="submit" class="pay-btn">Pay $${total.toFixed(2)}</button>
+          </form>
+        </div>
+      `;
+    }
+
+    function handleCheckoutSubmit(event) {
+      event.preventDefault();
+      const name = document.getElementById("custName").value.trim();
+      const email = document.getElementById("custEmail").value.trim();
+      const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
+      const shipping = subtotal >= 75 ? 0 : 6.99;
+      const total = subtotal + shipping;
+      const orderRef = "LB-" + Math.floor(100000 + Math.random() * 900000);
+
+      cartItems = [];
+      updateBagBadge();
+      document.getElementById("statusMsg").textContent = `Order ${orderRef} placed`;
+
+      document.getElementById("checkoutContent").innerHTML = `
+        <div class="order-confirmation">
+          <div class="hero-tag" style="margin-bottom:6px;">Order Confirmed</div>
+          <h3>Thank you, ${name}!</h3>
+          <p style="color:var(--muted); margin-bottom:14px;">
+            Order <strong>${orderRef}</strong> for <strong>$${total.toFixed(2)}</strong> has been submitted. A confirmation receipt has been sent to <strong>${email}</strong>.
+          </p>
+          <button class="btn-primary" onclick="openView('home')">Continue Shopping &rsaquo;</button>
+        </div>
+      `;
     }
 
     document.querySelectorAll("[data-view]").forEach(el => {
       el.addEventListener("click", () => openView(el.dataset.view));
     });
 
-    document.getElementById("openBagBtn").addEventListener("click", openBag);
-    document.getElementById("closeBagBtn").addEventListener("click", closeBag);
-    document.getElementById("drawerBackdrop").addEventListener("click", closeBag);
-
-    document.getElementById("checkoutBtn").addEventListener("click", () => {
-      if (bag.size === 0) return;
-      closeBag();
-      renderCheckoutSummary();
-      document.getElementById("orderConfirmBox").style.display = "none";
-      openView("checkout");
+    document.getElementById("cartBtn").addEventListener("click", () => openView("checkout"));
+    document.getElementById("shopCollectionBtn").addEventListener("click", () => openView("fajas"));
+    document.querySelectorAll(".faja-filter, .price-filter").forEach(cb => {
+      cb.addEventListener("change", renderFajas);
     });
 
-    document.getElementById("checkoutForm").addEventListener("submit", (e) => {
-      e.preventDefault();
-      if (bag.size === 0) return;
-
-      const method = document.querySelector('input[name="payMethod"]:checked').value;
-      const subtotal = getSubtotal();
-      const shipping = subtotal >= 75 ? 0 : 6.99;
-      const total = (subtotal + shipping).toFixed(2);
-      const name = document.getElementById("custName").value;
-      const itemsText = [...bag.values()].map(i => `${i.qty}x ${i.name}`).join(", ");
-      const link = PAYMENT_LINKS[method];
-
-      const confirmBox = document.getElementById("orderConfirmBox");
-      confirmBox.style.display = "block";
-
-      if (method === "zelle") {
-        confirmBox.innerHTML = `
-          <strong>Order Ready for ${name} — Total: $${total}</strong><br>
-          Items: ${itemsText}<br><br>
-          Send <strong>$${total}</strong> via <strong>Zelle</strong> to: <code>${link}</code>
-        `;
-        return;
-      }
-
-      let finalPayUrl = link;
-      if ((method === "paypal" || method === "cashapp") && !link.includes("YOUR_")) {
-        finalPayUrl = `${link.replace(/\/$/, "")}/${total}`;
-      }
-
-      const isConfigured = !link.includes("YOUR_");
-      confirmBox.innerHTML = `
-        <strong>Order Ready for ${name} — Total: $${total}</strong><br>
-        Items: ${itemsText}<br><br>
-        ${isConfigured
-          ? `<a href="${finalPayUrl}" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block; text-decoration:none;">Proceed to ${method.toUpperCase()} Payment ($${total}) &rsaquo;</a>`
-          : `<em>Setup reminder:</em> Replace <code>PAYMENT_LINKS.${method}</code> in the script with your payment link once your bank account is set up.`
-        }
-      `;
-    });
-
-    document.querySelectorAll(".filter-cat, .filter-price").forEach(cb => {
-      cb.addEventListener("change", () => renderCollection(cb.dataset.collection));
-    });
-
-    renderCollection("fajas");
-    renderCollection("jewelry");
-    renderCollection("perfume");
+    renderFajas();
   </script>
 </body>
 </html>
