@@ -4,305 +4,949 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Leticia's Boutique</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root {
+      --bg: #f6f2ee;
+      --surface: #fbf9f7;
+      --text: #3a2e28;
+      --muted: #7c6b61;
+      --accent: #5a4337;
+      --accent-hover: #433128;
+      --border: #e5ddd5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: inherit;
+    }
+
+    .view { display: none; }
+    .view.active { display: block; }
+
+    /* Top Promo Bar */
+    .promo-bar {
+      background: #4e3b31;
+      color: #f9f5f0;
+      font-family: system-ui, sans-serif;
+      font-size: 12px;
+      padding: 7px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Header & Nav */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-family: system-ui, sans-serif;
+      font-size: 14px;
+    }
+
+    .nav-btn {
+      padding: 4px 2px;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      font-weight: 600;
+    }
+
+    .brand {
+      font-size: 26px;
+      letter-spacing: 0.3px;
+      font-weight: normal;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: system-ui, sans-serif;
+      font-size: 13px;
+    }
+
+    .cart-pill {
+      background: var(--accent);
+      color: #fff;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .cart-pill:hover { background: var(--accent-hover); }
+
+    /* Hero Banner */
+    .hero {
+      background: linear-gradient(90deg, #ead8c8 0%, #dcc3ae 55%, #cfb097 100%);
+      padding: 48px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      min-height: 290px;
+    }
+
+    .hero-tag {
+      font-family: system-ui, sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 50px);
+      line-height: 1.08;
+      font-weight: normal;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-style: italic;
+      color: #524239;
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      font-family: system-ui, sans-serif;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 11px 20px;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--accent-hover); }
+
+    .hero-badge {
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(90, 67, 55, 0.2);
+      border-radius: 12px;
+      padding: 20px 24px;
+      text-align: center;
+      max-width: 240px;
+      font-family: system-ui, sans-serif;
+      font-size: 13px;
+    }
+
+    /* Main Container & Category Grid */
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 28px 24px 48px;
+    }
+
+    .section-heading {
+      font-size: 24px;
+      font-weight: normal;
+      margin-bottom: 18px;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 18px;
+    }
+
+    .category-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 16px;
+      text-align: left;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .category-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(58, 46, 40, 0.08);
+    }
+
+    .thumb-box {
+      height: 160px;
+      background: #efe7df;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      font-family: system-ui, sans-serif;
+      font-size: 12px;
+      color: var(--muted);
+      overflow: hidden;
+    }
+
+    .thumb-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Collection Catalog View */
+    .breadcrumb {
+      font-family: system-ui, sans-serif;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .breadcrumb button {
+      text-decoration: underline;
+      color: var(--text);
+    }
+
+    .catalog-layout {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .filter-group {
+      margin-bottom: 22px;
+      font-family: system-ui, sans-serif;
+      font-size: 13px;
+    }
+
+    .filter-group h4 {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .filter-group label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      color: #4f4037;
+      cursor: pointer;
+    }
+
+    .swatch-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .swatch {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.25);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      text-align: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .product-img {
+      height: 185px;
+      background: #efe7df;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: system-ui, sans-serif;
+      font-size: 12px;
+      color: var(--muted);
+      overflow: hidden;
+    }
+
+    .product-title {
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+
+    .product-price {
+      font-family: system-ui, sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .add-btn {
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      font-family: system-ui, sans-serif;
+      font-size: 11px;
+      letter-spacing: 1px;
+      padding: 9px;
+      transition: background 0.2s;
+    }
+
+    .add-btn:hover { background: var(--accent-hover); }
+
+    /* Slide-Out Shopping Bag Drawer */
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(34, 24, 19, 0.5);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      z-index: 40;
+    }
+
+    .drawer-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(390px, 92vw);
+      height: 100vh;
+      background: var(--surface);
+      border-left: 1px solid var(--border);
+      box-shadow: -12px 0 32px rgba(34, 24, 19, 0.18);
+      transform: translateX(100%);
+      transition: transform 0.28s ease;
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      font-family: system-ui, sans-serif;
+    }
+
+    .cart-drawer.open { transform: translateX(0); }
+
+    .drawer-header {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .drawer-header h3 {
+      font-family: Georgia, serif;
+      font-size: 20px;
+      font-weight: normal;
+    }
+
+    .close-drawer {
+      font-size: 24px;
+      line-height: 1;
+      padding: 4px 8px;
+      color: var(--muted);
+    }
+
+    .shipping-banner {
+      background: #efe7df;
+      padding: 10px 20px;
+      font-size: 12px;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .shipping-track {
+      height: 5px;
+      background: #ddd1c5;
+      border-radius: 999px;
+      margin-top: 6px;
+      overflow: hidden;
+    }
+
+    .shipping-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      transition: width 0.25s ease;
+    }
+
+    .drawer-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 20px;
+    }
+
+    .empty-bag {
+      text-align: center;
+      color: var(--muted);
+      padding: 48px 12px;
+      font-size: 14px;
+    }
+
+    .bag-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .bag-item-info strong {
+      display: block;
+      font-family: Georgia, serif;
+      font-weight: normal;
+      font-size: 15px;
+    }
+
+    .bag-item-info span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .qty-btn {
+      width: 24px;
+      height: 24px;
+      border: 1px solid var(--border);
+      background: #fff;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .remove-link {
+      font-size: 11px;
+      color: var(--muted);
+      text-decoration: underline;
+      margin-left: 4px;
+    }
+
+    .drawer-footer {
+      padding: 18px 20px;
+      border-top: 1px solid var(--border);
+      background: #f3ece5;
+    }
+
+    .subtotal-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      padding: 12px;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .checkout-btn:hover { background: var(--accent-hover); }
+
+    @media (max-width: 760px) {
+      .catalog-layout { grid-template-columns: 1fr; }
+      .hero { flex-direction: column; text-align: center; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Top Announcement Bar -->
-  <div class="announcement-bar" role="region" aria-label="Promotions">
-    <button class="announcement-btn" id="prevAnnouncement" aria-label="Previous announcement">&lsaquo;</button>
-    <div class="announcement-text" id="announcementText">Free shipping on orders over $75</div>
-    <button class="announcement-btn" id="nextAnnouncement" aria-label="Next announcement">&rsaquo;</button>
+  <div class="promo-bar">
+    <span>&lsaquo;</span>
+    <span>Free shipping on orders over $75</span>
+    <span>&rsaquo;</span>
   </div>
 
-  <!-- Main Site Header -->
-  <header class="site-header">
-    <div class="header-inner">
-      <div class="header-top-row">
-        <div class="header-left">
-          <label class="search-pill" aria-label="Search boutique products">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <circle cx="11" cy="11" r="7"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <input type="text" id="globalSearchInput" placeholder="Search..." autocomplete="off" />
-            <button type="button" class="search-clear-btn" id="clearSearchBtn" aria-label="Clear search">&times;</button>
-          </label>
-        </div>
+  <header>
+    <nav class="nav-links" aria-label="Main Navigation">
+      <button class="nav-btn active" data-view="home">Home</button>
+      <button class="nav-btn" data-view="jewelry">Jewelry</button>
+      <button class="nav-btn" data-view="fajas">Fajas</button>
+      <button class="nav-btn" data-view="perfume">Perfume</button>
+    </nav>
 
-        <button type="button" class="brand-logo" id="logoHomeBtn">Leticia's Boutique</button>
+    <button class="brand" data-view="home">Leticia's Boutique</button>
 
-        <div class="header-right">
-          <button type="button" class="icon-btn" id="accountBtn" aria-label="Account">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M20 21a8 8 0 0 0-16 0"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-          </button>
-          <button type="button" class="icon-btn" id="openBagBtn" aria-label="Shopping Bag">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M6 7h12l1 13H5L6 7z"></path>
-              <path d="M9 7V5a3 3 0 0 1 6 0v2"></path>
-            </svg>
-            <span class="bag-badge" id="bagCountBadge">0</span>
-          </button>
-        </div>
-      </div>
-
-      <nav class="header-subnav" aria-label="Primary Navigation">
-        <button type="button" class="nav-link active" data-view="home">Home</button>
-        <button type="button" class="nav-link" data-view="jewelry">Jewelry</button>
-        <button type="button" class="nav-link" data-view="fajas">Fajas</button>
-        <button type="button" class="nav-link" data-view="perfume">Perfume</button>
-      </nav>
+    <div class="header-actions">
+      <span id="statusMsg">Viewing Home</span>
+      <button class="cart-pill" id="openBagBtn">Bag (<span id="cartCount">0</span>)</button>
     </div>
   </header>
 
-  <!-- ==================== VIEW 1: HOME PAGE ==================== -->
-  <main id="view-home" class="page-view active">
-    <section class="home-hero">
-      <div class="home-hero-bg"></div>
-      <div class="home-hero-grid">
-        <div class="hero-models-visual" aria-hidden="true">
-          <div class="arch-backdrop"></div>
-          <div class="model-portrait-card model-portrait-1">
-            <span class="model-tag-pill">Satin Evening Edit</span>
-          </div>
-          <div class="model-portrait-card model-portrait-2">
-            <span class="model-tag-pill">Signature Silhouette</span>
-          </div>
-          <div class="model-portrait-card model-portrait-3">
-            <span class="model-tag-pill">Fine Gold &amp; Luxe</span>
-          </div>
-        </div>
-
-        <div class="home-hero-copy">
-          <h1 class="home-hero-title">Leticia's<br>Boutique</h1>
-          <p class="home-hero-subtitle">LUXURY &bull; BEAUTY &bull; STYLE</p>
-          <button type="button" class="btn-espresso" id="heroShopNowBtn">SHOP NOW &rarr;</button>
-        </div>
+  <!-- HOMEPAGE VIEW -->
+  <section id="view-home" class="view active">
+    <div class="hero">
+      <div>
+        <div class="hero-tag">Leticia's Boutique</div>
+        <h1>Sculpted<br>Confidence</h1>
+        <p>Feel confident in every silhouette, scent, and detail.</p>
+        <button class="btn-primary" data-view="fajas">Shop The Collection &rsaquo;</button>
       </div>
-    </section>
-
-    <section class="category-showcase">
-      <div class="container">
-        <div class="category-grid">
-          <button type="button" class="category-tile jewellery-bg" data-jump-view="jewelry">
-            <span class="category-tile-title">Jewellery</span>
-            <span class="category-tile-cta">SHOP NOW &rarr;</span>
-          </button>
-          <button type="button" class="category-tile fajas-bg" data-jump-view="fajas">
-            <span class="category-tile-title">Fajas</span>
-            <span class="category-tile-cta">SHOP NOW &rarr;</span>
-          </button>
-          <button type="button" class="category-tile perfume-bg" data-jump-view="perfume">
-            <span class="category-tile-title">Perfume</span>
-            <span class="category-tile-cta">SHOP NOW &rarr;</span>
-          </button>
-        </div>
+      <div class="hero-badge">
+        <strong>Explore Our Collections</strong><br>
+        Click <strong>Fajas</strong>, <strong>Jewelry</strong>, or <strong>Perfume</strong> to browse right here on the page.
       </div>
-    </section>
-
-    <section class="favorites-section" id="favoritesSection">
-      <div class="container">
-        <div class="section-header-center">
-          <h2 class="section-title-serif">Shop Our Favorites</h2>
-          <p class="section-subtitle-italic">Elevate your everyday with our most loved pieces.</p>
-        </div>
-        <div class="products-grid-4" id="favoritesGrid"></div>
-      </div>
-    </section>
-  </main>
-
-  <!-- ==================== VIEW 2: JEWELRY COLLECTION ==================== -->
-  <main id="view-jewelry" class="page-view">
-    <section class="collection-hero jewelry-hero">
-      <div class="collection-hero-inner">
-        <div class="collection-hero-copy">
-          <p class="collection-kicker">JEWELRY COLLECTION</p>
-          <h1 class="collection-hero-title">Timeless<br>Elegance</h1>
-          <p class="collection-hero-desc">Elevate your style with our stunning jewelry pieces.</p>
-          <button type="button" class="btn-espresso scroll-to-catalog-btn">SHOP THE COLLECTION &rarr;</button>
-        </div>
-        <div class="collection-hero-artwork" style="background: linear-gradient(145deg, #C6AE94 0%, #87664B 60%, #4E3827 100%);" aria-hidden="true">
-          <svg width="260" height="190" viewBox="0 0 260 190" fill="none">
-            <ellipse cx="130" cy="115" rx="84" ry="42" stroke="#F4D38C" stroke-width="11"/>
-            <ellipse cx="130" cy="108" rx="84" ry="42" stroke="#FFF3CC" stroke-width="3" stroke-dasharray="6 8"/>
-            <circle cx="88" cy="134" r="7" fill="#FFF7DC"/>
-            <circle cx="130" cy="156" r="8" fill="#FFF7DC"/>
-            <circle cx="172" cy="134" r="7" fill="#FFF7DC"/>
-          </svg>
-        </div>
-      </div>
-    </section>
+    </div>
 
     <div class="container">
-      <div class="catalog-toolbar">
-        <div class="breadcrumb">
-          <button type="button" class="crumb-home">Home</button>
-          <span>&rsaquo;</span>
-          <span>Jewelry</span>
-        </div>
-        <div class="sort-control">
-          <label for="sort-jewelry">Sort by</label>
-          <select id="sort-jewelry" class="sort-select" data-view-sort="jewelry">
-            <option value="featured">Featured</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="price-desc">Price: High to Low</option>
-          </select>
-        </div>
+      <h2 class="section-heading">Shop by Category</h2>
+      <div class="category-grid">
+        <button class="category-card" data-view="fajas">
+          <div class="thumb-box">
+            <img src="images/seamless-bodysuit.jpg" alt="Fajas" onerror="this.style.display='none'; this.parentNode.textContent='Fajas Collection';">
+          </div>
+          <strong>Fajas</strong>
+          <p class="product-price">Bodysuits, waist cinchers &amp; shapers</p>
+        </button>
+
+        <button class="category-card" data-view="jewelry">
+          <div class="thumb-box">
+            <img src="images/gold-hoops.jpg" alt="Jewelry" onerror="this.style.display='none'; this.parentNode.textContent='Jewelry Collection';">
+          </div>
+          <strong>Jewelry</strong>
+          <p class="product-price">Necklaces, hoops, bracelets &amp; rings</p>
+        </button>
+
+        <button class="category-card" data-view="perfume">
+          <div class="thumb-box">
+            <img src="images/velvet-vanilla.jpg" alt="Perfume" onerror="this.style.display='none'; this.parentNode.textContent='Perfume Collection';">
+          </div>
+          <strong>Perfume</strong>
+          <p class="product-price">Eau de parfum, body mists &amp; gift sets</p>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAJAS VIEW -->
+  <section id="view-fajas" class="view">
+    <div class="hero">
+      <div>
+        <div class="hero-tag">Fajas Collection</div>
+        <h1>Sculpted<br>Confidence</h1>
+        <p>Feel confident in every silhouette.</p>
+        <button class="btn-primary" onclick="document.getElementById('fajasGrid').scrollIntoView({ behavior: 'smooth' })">
+          Shop The Collection &rsaquo;
+        </button>
+      </div>
+      <div class="hero-badge">
+        <strong>Fajas Collection</strong><br>
+        Smooth sculpting pieces in classic &amp; cocoa tones.
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="breadcrumb">
+        <button data-view="home">Home</button> &rsaquo; <span>Fajas</span>
       </div>
 
       <div class="catalog-layout">
-        <aside class="filter-sidebar" id="sidebar-jewelry"></aside>
-        <div class="catalog-products-grid" id="grid-jewelry"></div>
+        <aside>
+          <h3 class="section-heading" style="font-size:18px; margin-bottom:14px;">Filter By</h3>
+
+          <div class="filter-group">
+            <h4>Category</h4>
+            <label><input type="checkbox" class="filter-cat" data-collection="fajas" value="Waist Cinchers"> Waist Cinchers</label>
+            <label><input type="checkbox" class="filter-cat" data-collection="fajas" value="Bodysuits"> Bodysuits</label>
+            <label><input type="checkbox" class="filter-cat" data-collection="fajas" value="Full Body Shapers"> Full Body Shapers</label>
+            <label><input type="checkbox" class="filter-cat" data-collection="fajas" value="Shorts"> Shorts</label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Price</h4>
+            <label><input type="checkbox" class="filter-price" data-collection="fajas" value="under25"> Under $25</label>
+            <label><input type="checkbox" class="filter-price" data-collection="fajas" value="25to50"> $25–$50</label>
+            <label><input type="checkbox" class="filter-price" data-collection="fajas" value="50to75"> $50–$75</label>
+            <label><input type="checkbox" class="filter-price" data-collection="fajas" value="over75"> Over $75</label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Color</h4>
+            <div class="swatch-row">
+              <span class="swatch" style="background:#e8d3c0;"></span>
+              <span class="swatch" style="background:#1e1b18;"></span>
+              <span class="swatch" style="background:#d9a79c;"></span>
+              <span class="swatch" style="background:#6e473b;"></span>
+            </div>
+          </div>
+        </aside>
+
+        <div id="fajasGrid" class="product-grid"></div>
       </div>
     </div>
-  </main>
+  </section>
 
-  <!-- ==================== VIEW 3: FAJAS COLLECTION ==================== -->
-  <main id="view-fajas" class="page-view">
-    <section class="collection-hero fajas-hero">
-      <div class="collection-hero-inner">
-        <div class="collection-hero-copy">
-          <p class="collection-kicker">FAJAS COLLECTION</p>
-          <h1 class="collection-hero-title">Sculpted<br>Confidence</h1>
-          <p class="collection-hero-desc">Feel confident in every silhouette.</p>
-          <button type="button" class="btn-espresso scroll-to-catalog-btn">SHOP THE COLLECTION &rsaquo;</button>
-        </div>
-        <div class="collection-hero-artwork" style="background: linear-gradient(145deg, #DFC5AE 0%, #A67E62 60%, #5D4331 100%);" aria-hidden="true">
-          <svg width="240" height="210" viewBox="0 0 240 210" fill="none">
-            <path d="M92 32C92 32 103 44 120 44C137 44 148 32 148 32L156 82C143 96 142 114 155 130L164 182H132L120 144L108 182H76L85 130C98 114 97 96 84 82L92 32Z" fill="#E8C7AC" stroke="#B88E6E" stroke-width="2"/>
-          </svg>
-        </div>
+  <!-- JEWELRY VIEW -->
+  <section id="view-jewelry" class="view">
+    <div class="hero">
+      <div>
+        <div class="hero-tag">Jewelry Collection</div>
+        <h1>Golden<br>Radiance</h1>
+        <p>Timeless pieces designed to elevate every look.</p>
+        <button class="btn-primary" onclick="document.getElementById('jewelryGrid').scrollIntoView({ behavior: 'smooth' })">
+          Shop The Collection &rsaquo;
+        </button>
       </div>
-    </section>
+      <div class="hero-badge">
+        <strong>Jewelry Collection</strong><br>
+        18k gold-plated essentials, hoops &amp; layered chains.
+      </div>
+    </div>
 
     <div class="container">
-      <div class="catalog-toolbar">
-        <div class="breadcrumb">
-          <button type="button" class="crumb-home">Home</button>
-          <span>&rsaquo;</span>
-          <span>Fajas</span>
-        </div>
-        <div class="sort-control">
-          <label for="sort-fajas">Sort by</label>
-          <select id="sort-fajas" class="sort-select" data-view-sort="fajas">
-            <option value="featured">Featured</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="price-desc">Price: High to Low</option>
-          </select>
-        </div>
+      <div class="breadcrumb">
+        <button data-view="home">Home</button> &rsaquo; <span>Jewelry</span>
       </div>
 
       <div class="catalog-layout">
-        <aside class="filter-sidebar" id="sidebar-fajas"></aside>
-        <div class="catalog-products-grid" id="grid-fajas"></div>
+        <aside>
+          <h3 class="section-heading" style="font-size:18px; margin-bottom:14px;">Filter By</h3>
+
+          <div class="filter-group">
+            <h4>Category</h4>
+            <label><input type="checkbox" class="filter-cat" data-collection="jewelry" value="Necklaces"> Necklaces</label>
+            <label><input type="checkbox" class="filter-cat" data-collection="jewelry" value="Earrings"> Earrings</label>
+            <label><input type="checkbox" class="filter-cat" data-collection="jewelry" value="Bracelets"> Bracelets</label>
+            <label><input type="checkbox" class="filter-cat" data-collection="jewelry" value="Rings"> Rings</label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Price</h4>
+            <label><input type="checkbox" class="filter-price" data-collection="jewelry" value="under25"> Under $25</label>
+            <label><input type="checkbox" class="filter-price" data-collection="jewelry" value="25to50"> $25–$50</label>
+            <label><input type="checkbox" class="filter-price" data-collection="jewelry" value="50to75"> $50–$75</label>
+            <label><input type="checkbox" class="filter-price" data-collection="jewelry" value="over75"> Over $75</label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Finish</h4>
+            <div class="swatch-row">
+              <span class="swatch" style="background:#d4af37;"></span>
+              <span class="swatch" style="background:#e5e4e2;"></span>
+              <span class="swatch" style="background:#e0bfb8;"></span>
+            </div>
+          </div>
+        </aside>
+
+        <div id="jewelryGrid" class="product-grid"></div>
       </div>
     </div>
-  </main>
+  </section>
 
-  <!-- ==================== VIEW 4: PERFUME COLLECTION ==================== -->
-  <main id="view-perfume" class="page-view">
-    <section class="collection-hero perfume-hero">
-      <div class="collection-hero-inner">
-        <div class="collection-hero-copy">
-          <p class="collection-kicker">FRAGRANCE COLLECTION</p>
-          <h1 class="collection-hero-title">Timeless<br>Scents</h1>
-          <p class="collection-hero-desc">Elevate your presence.</p>
-          <button type="button" class="btn-espresso scroll-to-catalog-btn">SHOP THE COLLECTION &rsaquo;</button>
-        </div>
-        <div class="collection-hero-artwork" style="background: linear-gradient(145deg, #F5DCD2 0%, #DDA99A 60%, #9E6E61 100%);" aria-hidden="true">
-          <svg width="240" height="200" viewBox="0 0 240 200" fill="none">
-            <circle cx="56" cy="130" r="24" fill="#F8C8C8" opacity="0.85"/>
-            <circle cx="192" cy="136" r="21" fill="#F5B8B8" opacity="0.8"/>
-            <rect x="88" y="64" width="68" height="92" rx="10" fill="#F6C5BE" stroke="#FFF5F2" stroke-width="2.5"/>
-            <rect x="108" y="46" width="28" height="18" rx="3" fill="#E8C38A"/>
-            <path d="M98 43C98 34 114 34 122 44C130 34 146 34 146 43C146 50 132 50 122 45C112 50 98 50 98 43Z" fill="#F2D19B"/>
-          </svg>
-        </div>
+  <!-- PERFUME VIEW -->
+  <section id="view-perfume" class="view">
+    <div class="hero">
+      <div>
+        <div class="hero-tag">Perfume Collection</div>
+        <h1>Signature<br>Allure</h1>
+        <p>Unforgettable scents that linger from day to night.</p>
+        <button class="btn-primary" onclick="document.getElementById('perfumeGrid').scrollIntoView({ behavior: 'smooth' })">
+          Shop The Collection &rsaquo;
+        </button>
       </div>
-    </section>
+      <div class="hero-badge">
+        <strong>Perfume Collection</strong><br>
+        Warm vanilla, floral musk &amp; amber blends.
+      </div>
+    </div>
 
     <div class="container">
-      <div class="catalog-toolbar">
-        <div class="breadcrumb">
-          <button type="button" class="crumb-home">Home</button>
-          <span>&rsaquo;</span>
-          <span>Perfume</span>
-        </div>
-        <div class="sort-control">
-          <label for="sort-perfume">Sort by</label>
-          <select id="sort-perfume" class="sort-select" data-view-sort="perfume">
-            <option value="featured">Featured</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="price-desc">Price: High to Low</option>
-          </select>
-        </div>
+      <div class="breadcrumb">
+        <button data-view="home">Home</button> &rsaquo; <span>Perfume</span>
       </div>
 
       <div class="catalog-layout">
-        <aside class="filter-sidebar" id="sidebar-perfume"></aside>
-        <div class="catalog-products-grid" id="grid-perfume"></div>
+        <aside>
+          <h3 class="section-heading" style="font-size:18px; margin-bottom:14px;">Filter By</h3>
+
+          <div class="filter-group">
+            <h4>Category</h4>
+            <label><input type="checkbox" class="filter-cat" data-collection="perfume" value="Eau de Parfum"> Eau de Parfum</label>
+            <label><input type="checkbox" class="filter-cat" data-collection="perfume" value="Body Mist"> Body Mist</label>
+            <label><input type="checkbox" class="filter-cat" data-collection="perfume" value="Rollerball"> Rollerball</label>
+            <label><input type="checkbox" class="filter-cat" data-collection="perfume" value="Gift Sets"> Gift Sets</label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Price</h4>
+            <label><input type="checkbox" class="filter-price" data-collection="perfume" value="under25"> Under $25</label>
+            <label><input type="checkbox" class="filter-price" data-collection="perfume" value="25to50"> $25–$50</label>
+            <label><input type="checkbox" class="filter-price" data-collection="perfume" value="50to75"> $50–$75</label>
+            <label><input type="checkbox" class="filter-price" data-collection="perfume" value="over75"> Over $75</label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Notes</h4>
+            <div class="swatch-row">
+              <span class="swatch" style="background:#f3e5ab;" title="Vanilla"></span>
+              <span class="swatch" style="background:#e8b4b8;" title="Floral"></span>
+              <span class="swatch" style="background:#b5651d;" title="Amber"></span>
+            </div>
+          </div>
+        </aside>
+
+        <div id="perfumeGrid" class="product-grid"></div>
       </div>
     </div>
-  </main>
+  </section>
 
-  <!-- Site Footer -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-brand-serif">Leticia's Boutique</div>
-      <div class="footer-links">
-        <button type="button" data-info-modal="shipping">Shipping &amp; Returns</button>
-        <button type="button" data-info-modal="authenticity">Authenticity Guarantee</button>
-        <button type="button" data-info-modal="contact">Concierge</button>
-      </div>
-      <div class="footer-copy">&copy; 2026 Leticia's Boutique. Luxury &bull; Beauty &bull; Style.</div>
-    </div>
-  </footer>
-
-  <!-- Slide-over Shopping Bag Drawer -->
-  <div class="drawer-backdrop" id="drawerBackdrop"></div>
-  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping Bag">
+  <!-- SLIDE-OUT SHOPPING BAG DRAWER -->
+  <div id="drawerBackdrop" class="drawer-backdrop"></div>
+  <aside id="cartDrawer" class="cart-drawer" aria-label="Shopping Bag">
     <div class="drawer-header">
-      <h2 class="drawer-title">Shopping Bag</h2>
-      <button type="button" class="icon-btn" id="closeBagBtn" aria-label="Close bag">&times;</button>
+      <h3>Your Bag</h3>
+      <button id="closeBagBtn" class="close-drawer" aria-label="Close Bag">&times;</button>
     </div>
 
-    <div class="shipping-progress-box">
-      <div id="shippingStatusText">Add $75.00 more to unlock <strong>Free Shipping</strong></div>
-      <div class="shipping-bar-track">
-        <div class="shipping-bar-fill" id="shippingBarFill"></div>
+    <div class="shipping-banner">
+      <div id="shippingText">Add $75.00 more for free shipping</div>
+      <div class="shipping-track">
+        <div id="shippingFill" class="shipping-fill"></div>
       </div>
     </div>
 
-    <div class="drawer-items" id="drawerItems"></div>
+    <div id="bagItems" class="drawer-items">
+      <div class="empty-bag">Your bag is currently empty.</div>
+    </div>
 
     <div class="drawer-footer">
       <div class="subtotal-row">
         <span>Subtotal</span>
-        <span id="cartSubtotal">$0.00</span>
+        <span id="bagSubtotal">$0.00</span>
       </div>
-      <p class="subtotal-note">Taxes and complimentary shipping calculated at checkout.</p>
-      <button type="button" class="btn-espresso" style="width: 100%;" id="checkoutBtn">PROCEED TO CHECKOUT</button>
-      <div class="checkout-confirm-banner" id="checkoutConfirmBanner">
-        Order placed! Thank you for shopping Leticia's Boutique.
-      </div>
+      <button class="checkout-btn" id="checkoutBtn">Checkout</button>
     </div>
   </aside>
 
-  <!-- Account / Info Modal -->
-  <div class="modal-backdrop" id="infoModal">
-    <div class="modal-card">
-      <h3 id="modalTitle">Boutique Member</h3>
-      <p id="modalBody">Welcome to Leticia's Boutique. Sign in or track your orders anytime.</p>
-      <button type="button" class="btn-espresso" id="closeModalBtn">CLOSE</button>
-    </div>
-  </div>
+  <script>
+    const catalog = {
+      fajas: [
+        { id: "faja-1", name: "Seamless Bodysuit", price: 34.99, category: "Bodysuits", img: "images/seamless-bodysuit.jpg" },
+        { id: "faja-2", name: "Waist Cincher", price: 29.99, category: "Waist Cinchers", img: "images/waist-cincher.jpg" },
+        { id: "faja-3", name: "Shaping Shorts (Tan)", price: 32.99, category: "Shorts", img: "images/shaping-shorts-tan.jpg" },
+        { id: "faja-4", name: "Sculpting Bodysuit", price: 36.99, category: "Bodysuits", img: "images/sculpting-bodysuit.jpg" },
+        { id: "faja-5", name: "Waist Trainer", price: 39.99, category: "Waist Cinchers", img: "images/waist-trainer.jpg" },
+        { id: "faja-6", name: "Shaping Shorts (Cocoa)", price: 32.99, category: "Shorts", img: "images/shaping-shorts-brown.jpg" },
+        { id: "faja-7", name: "Seamless Thong Bodysuit", price: 34.99, category: "Bodysuits", img: "images/thong-bodysuit.jpg" },
+        { id: "faja-8", name: "Full Body Shaper", price: 44.99, category: "Full Body Shapers", img: "images/full-body-shaper.jpg" }
+      ],
+      jewelry: [
+        { id: "jewel-1", name: "18k Gold Sculpted Hoops", price: 28.99, category: "Earrings", img: "images/gold-hoops.jpg" },
+        { id: "jewel-2", name: "Layered Herringbone Chain", price: 38.99, category: "Necklaces", img: "images/herringbone-chain.jpg" },
+        { id: "jewel-3", name: "Dainty Tennis Bracelet", price: 34.99, category: "Bracelets", img: "images/tennis-bracelet.jpg" },
+        { id: "jewel-4", name: "Signet Dome Ring", price: 24.99, category: "Rings", img: "images/dome-ring.jpg" },
+        { id: "jewel-5", name: "Pearl Drop Earrings", price: 29.99, category: "Earrings", img: "images/pearl-drops.jpg" },
+        { id: "jewel-6", name: "Initial Medallion Pendant", price: 32.99, category: "Necklaces", img: "images/medallion-pendant.jpg" },
+        { id: "jewel-7", name: "Clover Charm Bracelet", price: 31.99, category: "Bracelets", img: "images/clover-bracelet.jpg" },
+        { id: "jewel-8", name: "Twisted Stackable Band", price: 22.99, category: "Rings", img: "images/stackable-band.jpg" }
+      ],
+      perfume: [
+        { id: "perf-1", name: "Velvet Vanilla Eau de Parfum", price: 54.99, category: "Eau de Parfum", img: "images/velvet-vanilla.jpg" },
+        { id: "perf-2", name: "Rose & Cashmere Mist", price: 24.99, category: "Body Mist", img: "images/rose-mist.jpg" },
+        { id: "perf-3", name: "Golden Amber Elixir", price: 62.99, category: "Eau de Parfum", img: "images/golden-amber.jpg" },
+        { id: "perf-4", name: "Sweet Musk Rollerball", price: 19.99, category: "Rollerball", img: "images/musk-rollerball.jpg" },
+        { id: "perf-5", name: "Midnight Jasmine Parfum", price: 58.99, category: "Eau de Parfum", img: "images/midnight-jasmine.jpg" },
+        { id: "perf-6", name: "Coconut Silk Body Mist", price: 22.99, category: "Body Mist", img: "images/coconut-mist.jpg" },
+        { id: "perf-7", name: "Signature Discovery Trio", price: 48.99, category: "Gift Sets", img: "images/discovery-trio.jpg" },
+        { id: "perf-8", name: "Santal Bloom Rollerball", price: 21.99, category: "Rollerball", img: "images/santal-rollerball.jpg" }
+      ]
+    };
 
-  <script src="script.js"></script>
+    const allProducts = [...catalog.fajas, ...catalog.jewelry, ...catalog.perfume];
+    const bag = new Map();
+
+    function openView(viewName) {
+      document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+      const target = document.getElementById(`view-${viewName}`);
+      if (target) target.classList.add("active");
+
+      document.querySelectorAll(".nav-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.view === viewName);
+      });
+
+      document.getElementById("statusMsg").textContent =
+        `Viewing ${viewName.charAt(0).toUpperCase() + viewName.slice(1)}`;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function openBag() {
+      document.getElementById("cartDrawer").classList.add("open");
+      document.getElementById("drawerBackdrop").classList.add("open");
+    }
+
+    function closeBag() {
+      document.getElementById("cartDrawer").classList.remove("open");
+      document.getElementById("drawerBackdrop").classList.remove("open");
+    }
+
+    function addToCart(productId) {
+      const product = allProducts.find(p => p.id === productId);
+      if (!product) return;
+
+      const existing = bag.get(productId);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        bag.set(productId, { ...product, qty: 1 });
+      }
+
+      renderBag();
+      openBag();
+    }
+
+    function updateQty(productId, delta) {
+      const item = bag.get(productId);
+      if (!item) return;
+
+      item.qty += delta;
+      if (item.qty <= 0) {
+        bag.delete(productId);
+      }
+      renderBag();
+    }
+
+    function renderBag() {
+      const container = document.getElementById("bagItems");
+      let totalItems = 0;
+      let subtotal = 0;
+
+      bag.forEach(item => {
+        totalItems += item.qty;
+        subtotal += item.price * item.qty;
+      });
+
+      document.getElementById("cartCount").textContent = totalItems;
+      document.getElementById("bagSubtotal").textContent = `$${subtotal.toFixed(2)}`;
+
+      const remaining = Math.max(0, 75 - subtotal);
+      const pct = Math.min(100, (subtotal / 75) * 100);
+      document.getElementById("shippingFill").style.width = `${pct}%`;
+      document.getElementById("shippingText").textContent =
+        remaining === 0
+          ? "You unlocked FREE shipping!"
+          : `Add $${remaining.toFixed(2)} more for free shipping`;
+
+      if (bag.size === 0) {
+        container.innerHTML = `<div class="empty-bag">Your bag is currently empty.</div>`;
+        return;
+      }
+
+      container.innerHTML = [...bag.values()].map(item => `
+        <div class="bag-item">
+          <div class="bag-item-info">
+            <strong>${item.name}</strong>
+            <span>$${item.price.toFixed(2)} each</span>
+          </div>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="updateQty('${item.id}', -1)">&minus;</button>
+            <span>${item.qty}</span>
+            <button class="qty-btn" onclick="updateQty('${item.id}', 1)">+</button>
+            <button class="remove-link" onclick="updateQty('${item.id}', -${item.qty})">Remove</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function renderCollection(collectionName) {
+      const items = catalog[collectionName] || [];
+      const selectedCats = [...document.querySelectorAll(`.filter-cat[data-collection="${collectionName}"]:checked`)]
+        .map(el => el.value);
+      const selectedPrices = [...document.querySelectorAll(`.filter-price[data-collection="${collectionName}"]:checked`)]
+        .map(el => el.value);
+
+      const filtered = items.filter(item => {
+        const catMatch = selectedCats.length === 0 || selectedCats.includes(item.category);
+        const priceMatch = selectedPrices.length === 0 || selectedPrices.some(range => {
+          if (range === "under25") return item.price < 25;
+          if (range === "25to50") return item.price >= 25 && item.price <= 50;
+          if (range === "50to75") return item.price > 50 && item.price <= 75;
+          if (range === "over75") return item.price > 75;
+          return true;
+        });
+        return catMatch && priceMatch;
+      });
+
+      const grid = document.getElementById(`${collectionName}Grid`);
+      grid.innerHTML = filtered.map(p => `
+        <div class="product-card">
+          <div>
+            <div class="product-img">
+              <img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;"
+                   onerror="this.style.display='none'; this.parentNode.textContent='${p.name}';">
+            </div>
+            <div class="product-title">${p.name}</div>
+            <div class="product-price">$${p.price.toFixed(2)}</div>
+          </div>
+          <button class="add-btn" onclick="addToCart('${p.id}')">ADD TO CART</button>
+        </div>
+      `).join("");
+    }
+
+    document.querySelectorAll("[data-view]").forEach(el => {
+      el.addEventListener("click", () => openView(el.dataset.view));
+    });
+
+    document.getElementById("openBagBtn").addEventListener("click", openBag);
+    document.getElementById("closeBagBtn").addEventListener("click", closeBag);
+    document.getElementById("drawerBackdrop").addEventListener("click", closeBag);
+
+    document.getElementById("checkoutBtn").addEventListener("click", () => {
+      if (bag.size === 0) return;
+      document.getElementById("statusMsg").textContent = "Proceeding to checkout...";
+      closeBag();
+    });
+
+    document.querySelectorAll(".filter-cat, .filter-price").forEach(cb => {
+      cb.addEventListener("change", () => renderCollection(cb.dataset.collection));
+    });
+
+    renderCollection("fajas");
+    renderCollection("jewelry");
+    renderCollection("perfume");
+  </script>
 </body>
 </html>
+
