@@ -925,3 +925,20 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target === infoModal) infoModal.classList.remove('open');
   });
 });
+// Complete Order Popup Handler
+function processOrder(event) {
+    event.preventDefault();
+    const modal = document.getElementById('order-modal');
+    if (modal) {
+        modal.style.display = 'flex';
+    }
+}
+
+function closeOrderModal() {
+    const modal = document.getElementById('order-modal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+    switchView('home');
+}
+
