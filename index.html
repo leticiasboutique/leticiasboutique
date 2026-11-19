@@ -2,137 +2,181 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Leticia's Boutique</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <header class="header">
-    <div class="announcement">
-      WELCOME TO LETICIA'S BOUTIQUE
+  <div class="announcement">
+    <span>‹</span>
+    FREE SHIPPING ON ORDERS OVER $75
+    <span>›</span>
+  </div>
+
+  <header class="site-header">
+    <div class="header-top">
+      <form class="search" action="#" onsubmit="return false">
+        <span>⌕</span>
+        <input type="search" placeholder="Search...">
+      </form>
+
+      <a href="index.html" class="brand-name">Leticia's Boutique</a>
+
+      <div class="header-icons">
+        <a href="#" aria-label="Account">♙</a>
+        <a href="#" aria-label="Shopping bag">♧</a>
+      </div>
     </div>
 
-    <nav class="navbar">
-      <a href="index.html" class="logo">LETICIA'S BOUTIQUE</a>
-
-      <div class="nav-links">
-        <a href="index.html">HOME</a>
-        <a href="jewelry.html">JEWELRY</a>
-        <a href="fajas.html">FAJAS</a>
-        <a href="perfume.html">PERFUME</a>
-      </div>
+    <nav class="navigation">
+      <a href="index.html">Home</a>
+      <a href="jewelry.html">Jewelry</a>
+      <a href="fajas.html">Fajas</a>
+      <a href="perfume.html">Perfume</a>
     </nav>
   </header>
 
   <main>
 
-    <section class="hero">
-      <div class="hero-image">
-        <img
-          src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b"
-          alt="Fashion model wearing an elegant outfit">
+    <!-- MAIN FASHION CAMPAIGN -->
+
+    <section class="main-campaign">
+      <div class="campaign-photos">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800"
+             alt="Fashion campaign model">
+        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800"
+             alt="Elegant fashion model">
+        <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=800"
+             alt="Boutique fashion model">
       </div>
 
-      <div class="hero-content">
-        <p class="eyebrow">THE BEAUTY OF EVERYDAY LUXURY</p>
-        <h1>Elegance is<br>always in style.</h1>
-        <p>
-          Discover beautiful pieces made to make
-          every moment feel special.
-        </p>
-        <a href="#shop" class="shop-button">SHOP NOW</a>
-      </div>
-    </section>
-
-    <section class="categories" id="shop">
-      <div class="section-heading">
-        <p>EXPLORE OUR COLLECTION</p>
-        <h2>Shop by Category</h2>
-      </div>
-
-      <div class="category-grid">
-
-        <a href="jewelry.html" class="category-card">
-          <img
-            src="https://images.unsplash.com/photo-1611652022419-a9419f74343d"
-            alt="Elegant jewelry">
-          <div class="category-info">
-            <h3>Jewelry</h3>
-            <span>SHOP COLLECTION →</span>
-          </div>
-        </a>
-
-        <a href="fajas.html" class="category-card">
-          <img
-            src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3"
-            alt="Women's fashion collection">
-          <div class="category-info">
-            <h3>Fajas</h3>
-            <span>SHOP COLLECTION →</span>
-          </div>
-        </a>
-
-        <a href="perfume.html" class="category-card">
-          <img
-            src="https://images.unsplash.com/photo-1594035910387-fea47794261f"
-            alt="Luxury perfume">
-          <div class="category-info">
-            <h3>Perfume</h3>
-            <span>SHOP COLLECTION →</span>
-          </div>
-        </a>
-
+      <div class="campaign-copy">
+        <h1>Leticia's<br>Boutique</h1>
+        <p>LUXURY · BEAUTY · STYLE</p>
+        <a href="#collections" class="brown-button">SHOP NOW →</a>
       </div>
     </section>
 
-    <section class="featured">
-      <div class="section-heading">
-        <p>HANDPICKED FOR YOU</p>
-        <h2>Our Featured Collection</h2>
-      </div>
+    <!-- CATEGORY COLLECTIONS -->
 
-      <div class="product-grid">
+    <section class="category-strip" id="collections">
 
-        <div class="product-card">
-          <img
-            src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908"
-            alt="Gold jewelry">
-          <h3>Elegant Jewelry</h3>
-          <p>Coming Soon</p>
+      <a href="jewelry.html" class="category-tile">
+        <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=600"
+             alt="Jewelry collection">
+        <div class="tile-copy">
+          <h2>Jewelry</h2>
+          <span>SHOP NOW →</span>
         </div>
+      </a>
 
-        <div class="product-card">
-          <img
-            src="https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc"
-            alt="Luxury perfume">
+      <a href="fajas.html" class="category-tile">
+        <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=600"
+             alt="Fashion and shapewear collection">
+        <div class="tile-copy">
+          <h2>Fajas</h2>
+          <span>SHOP NOW →</span>
+        </div>
+      </a>
+
+      <a href="perfume.html" class="category-tile">
+        <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600"
+             alt="Perfume collection">
+        <div class="tile-copy">
+          <h2>Perfume</h2>
+          <span>SHOP NOW →</span>
+        </div>
+      </a>
+
+    </section>
+
+    <!-- FEATURED PRODUCTS -->
+
+    <section class="favorites">
+      <div class="section-title">
+        <span></span>
+        <div>
+          <h2>Shop Our Favorites</h2>
+          <p>Elevate your everyday with our most loved pieces.</p>
+        </div>
+        <span></span>
+      </div>
+
+      <div class="favorite-grid">
+
+        <article class="product">
+          <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500"
+               alt="Gold jewelry">
+          <h3>Elegant Gold Jewelry</h3>
+          <p>Coming Soon</p>
+          <a href="jewelry.html" class="product-button">SHOP JEWELRY</a>
+        </article>
+
+        <article class="product">
+          <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=500"
+               alt="Luxury perfume">
           <h3>Signature Perfume</h3>
           <p>Coming Soon</p>
-        </div>
+          <a href="perfume.html" class="product-button">SHOP PERFUME</a>
+        </article>
 
-        <div class="product-card">
-          <img
-            src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d"
-            alt="Fashion collection">
-          <h3>Shop Our Favorites</h3>
+        <article class="product">
+          <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=500"
+               alt="Women's fashion">
+          <h3>Shaping Collection</h3>
           <p>Coming Soon</p>
-        </div>
+          <a href="fajas.html" class="product-button">SHOP FAJAS</a>
+        </article>
+
+        <article class="product">
+          <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500"
+               alt="Elegant accessories">
+          <h3>Everyday Elegance</h3>
+          <p>Coming Soon</p>
+          <a href="jewelry.html" class="product-button">DISCOVER MORE</a>
+        </article>
 
       </div>
     </section>
 
-    <section class="brand-message">
-      <p>LETICIA'S BOUTIQUE</p>
-      <h2>Feel beautiful. Feel confident. Be you.</h2>
+    <!-- FOUNDER / ABOUT SECTION -->
+
+    <section class="about-section">
+      <div class="about-photo">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=900"
+             alt="Temporary boutique founder portrait">
+      </div>
+
+      <div class="about-copy">
+        <p class="small-heading">A LITTLE ABOUT US</p>
+        <h2>Welcome to<br>Leticia's Boutique</h2>
+        <p>
+          A place where elegance meets everyday beauty.
+          Discover carefully selected styles, beautiful
+          accessories, and fragrances that make every
+          moment feel special.
+        </p>
+        <p>
+          Our vision is to bring together confidence,
+          femininity, and timeless style in one place.
+        </p>
+        <a href="#collections" class="brown-button">EXPLORE THE BOUTIQUE →</a>
+      </div>
     </section>
 
   </main>
 
-  <footer class="footer">
-    <h2>LETICIA'S BOUTIQUE</h2>
-    <p>Thank you for shopping with us.</p>
-    <p>© 2026 Leticia's Boutique. All rights reserved.</p>
+  <footer class="site-footer">
+    <h2>Leticia's Boutique</h2>
+    <p>LUXURY · BEAUTY · STYLE</p>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="jewelry.html">Jewelry</a>
+      <a href="fajas.html">Fajas</a>
+      <a href="perfume.html">Perfume</a>
+    </div>
+    <p class="copyright">© 2026 Leticia's Boutique. All rights reserved.</p>
   </footer>
 
 </body>
