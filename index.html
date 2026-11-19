@@ -25,7 +25,7 @@
       line-height: 1.45;
     }
 
-    button, input {
+    button, input, select {
       font-family: inherit;
       color: inherit;
     }
@@ -436,11 +436,11 @@
       background: var(--brown-dark);
     }
 
-    /* Secondary Views (Category & Checkout) */
+    /* Secondary Views (Category, Bag & Payment) */
     .sub-box {
       background: var(--surface);
       border: 1px solid var(--border);
-      padding: 24px;
+      padding: 28px;
       margin-top: 12px;
     }
 
@@ -453,27 +453,182 @@
       display: inline-block;
     }
 
-    .checkout-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-top: 14px;
+    .step-trail {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: system-ui, sans-serif;
+      font-size: 11px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step-trail span.active-step {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .bag-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
       font-family: system-ui, sans-serif;
       font-size: 13px;
+    }
+
+    .qty-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      padding: 3px 10px;
+      font-size: 12px;
+    }
+
+    .qty-box button {
+      font-weight: 700;
+      padding: 0 3px;
+    }
+
+    .remove-btn {
+      font-size: 11px;
+      color: var(--muted);
+      text-decoration: underline;
+      margin-left: 10px;
+    }
+
+    .checkout-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      margin-top: 12px;
+      font-family: system-ui, sans-serif;
+      font-size: 13px;
+      align-items: start;
+    }
+
+    .section-subtitle {
+      font-family: Georgia, serif;
+      font-size: 18px;
+      font-weight: normal;
+      color: var(--text);
+      margin: 18px 0 10px;
+    }
+
+    .section-subtitle:first-child {
+      margin-top: 0;
     }
 
     .field {
       display: flex;
       flex-direction: column;
       gap: 4px;
-      margin-bottom: 10px;
+      margin-bottom: 11px;
+    }
+
+    .field label {
+      font-size: 11px;
+      letter-spacing: 0.4px;
+      color: var(--muted);
     }
 
     .field input {
-      padding: 8px 10px;
-      border: 1px solid var(--border);
+      padding: 9px 11px;
+      border: 1px solid #dfd5cc;
+      background: #fdfcfb;
       font-family: system-ui, sans-serif;
       font-size: 13px;
+      color: var(--text);
+    }
+
+    .field input:focus {
+      outline: none;
+      border-color: var(--brown);
+    }
+
+    /* Payment Method Selector */
+    .payment-methods {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .pm-option {
+      border: 1px solid var(--border);
+      background: #fdfcfb;
+      padding: 11px 12px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-family: system-ui, sans-serif;
+      font-size: 12px;
+      color: var(--text);
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .pm-option.selected {
+      border-color: var(--brown);
+      background: #f5ede6;
+      font-weight: 600;
+    }
+
+    .pm-radio {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1.5px solid var(--brown);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .pm-option.selected .pm-radio::after {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--brown);
+    }
+
+    .pm-panel {
+      background: #faf7f4;
+      border: 1px solid var(--border);
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .summary-card {
+      background: #faf7f4;
+      border: 1px solid var(--border);
+      padding: 18px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 15px;
+      font-weight: 700;
     }
 
     @media (max-width: 820px) {
@@ -530,7 +685,7 @@
 
       <div class="header-right">
         <button type="button" class="icon-btn" id="accountBtn" title="Account">&#128100;</button>
-        <button type="button" class="icon-btn" id="bagBtn" data-view="checkout" title="Shopping Bag">
+        <button type="button" class="icon-btn" id="bagBtn" data-view="bag" title="Shopping Bag">
           &#128717; <span id="bagCount">0</span>
         </button>
       </div>
@@ -616,11 +771,19 @@
     </div>
   </section>
 
-  <!-- CHECKOUT VIEW -->
-  <section id="view-checkout" class="view">
+  <!-- BAG VIEW -->
+  <section id="view-bag" class="view">
     <div class="page-wrap">
       <button type="button" class="back-link" data-view="home">&larr; Continue Shopping</button>
-      <div class="sub-box" id="checkoutContainer"></div>
+      <div class="sub-box" id="bagContainer"></div>
+    </div>
+  </section>
+
+  <!-- PAYMENT METHOD / CHECKOUT VIEW -->
+  <section id="view-payment" class="view">
+    <div class="page-wrap">
+      <button type="button" class="back-link" data-view="bag">&larr; Back to Bag</button>
+      <div class="sub-box" id="paymentContainer"></div>
     </div>
   </section>
 
@@ -666,6 +829,15 @@
     ];
     let promoIdx = 0;
     let bag = [];
+    let selectedPaymentMethod = "card";
+
+    function formatMoney(amount) {
+      return "$" + amount.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function updateBagBadge() {
+      document.getElementById("bagCount").textContent = bag.reduce((s, i) => s + i.qty, 0);
+    }
 
     function showView(name) {
       document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
@@ -676,7 +848,8 @@
         btn.classList.toggle("active", btn.dataset.view === name);
       });
 
-      if (name === "checkout") renderCheckout();
+      if (name === "bag") renderBag();
+      if (name === "payment") renderPayment();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
@@ -699,7 +872,7 @@
             </div>
           </div>
           <div class="fav-title">${item.name}</div>
-          <div class="fav-price">$${item.price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+          <div class="fav-price">${formatMoney(item.price)}</div>
           <button type="button" class="fav-add-btn" onclick="addToBag('${item.id}')">ADD TO CART</button>
         </article>
       `).join("");
@@ -714,13 +887,36 @@
       } else {
         bag.push({ ...product, qty: 1 });
       }
-      document.getElementById("bagCount").textContent = bag.reduce((s, i) => s + i.qty, 0);
+      updateBagBadge();
     }
 
-    function renderCheckout() {
-      const box = document.getElementById("checkoutContainer");
+    function changeBagQty(id, delta) {
+      const item = bag.find(i => i.id === id);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        bag = bag.filter(i => i.id !== id);
+      }
+      updateBagBadge();
+      renderBag();
+    }
+
+    function removeBagItem(id) {
+      bag = bag.filter(i => i.id !== id);
+      updateBagBadge();
+      renderBag();
+    }
+
+    function renderBag() {
+      const box = document.getElementById("bagContainer");
       if (bag.length === 0) {
-        box.innerHTML = `<p style="color:var(--muted);">Your bag is currently empty.</p>`;
+        box.innerHTML = `
+          <h2 style="font-weight:normal;">Your Shopping Bag</h2>
+          <p style="color:var(--muted); margin:10px 0 18px; font-family:system-ui, sans-serif; font-size:13px;">
+            Your bag is currently empty.
+          </p>
+          <button type="button" class="btn-dark" onclick="showView('home')">EXPLORE BOUTIQUE &rarr;</button>
+        `;
         return;
       }
 
@@ -729,61 +925,239 @@
       const total = subtotal + shipping;
 
       box.innerHTML = `
-        <h2>Bag &amp; Checkout</h2>
-        <div class="checkout-grid">
-          <div>
-            ${bag.map(item => `
-              <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border);">
-                <span>${item.name} &times; ${item.qty}</span>
-                <strong>$${(item.price * item.qty).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>
+        <div class="step-trail">
+          <span class="active-step">1. Your Bag</span>
+          <span>&rsaquo;</span>
+          <span>2. Payment Method</span>
+          <span>&rsaquo;</span>
+          <span>3. Confirmation</span>
+        </div>
+
+        <h2 style="font-weight:normal; margin-bottom:8px;">Your Shopping Bag</h2>
+
+        <div>
+          ${bag.map(item => `
+            <div class="bag-row">
+              <div>
+                <div style="font-family:Georgia, serif; font-size:15px;">${item.name}</div>
+                <div style="color:var(--muted); font-size:12px;">${formatMoney(item.price)} each</div>
               </div>
-            `).join("")}
-            <div style="display:flex; justify-content:space-between; margin-top:12px;">
-              <span>Shipping</span>
-              <span>${shipping === 0 ? "FREE" : "$" + shipping.toFixed(2)}</span>
+              <div style="display:flex; align-items:center;">
+                <div class="qty-box">
+                  <button type="button" onclick="changeBagQty('${item.id}', -1)">-</button>
+                  <span>${item.qty}</span>
+                  <button type="button" onclick="changeBagQty('${item.id}', 1)">+</button>
+                </div>
+                <strong style="min-width:86px; text-align:right; margin-left:12px;">
+                  ${formatMoney(item.price * item.qty)}
+                </strong>
+                <button type="button" class="remove-btn" onclick="removeBagItem('${item.id}')">Remove</button>
+              </div>
             </div>
-            <div style="display:flex; justify-content:space-between; margin-top:10px; font-size:15px;">
-              <strong>Total</strong>
-              <strong>$${total.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>
+          `).join("")}
+        </div>
+
+        <div style="max-width:340px; margin-left:auto; margin-top:18px; font-family:system-ui, sans-serif;">
+          <div class="summary-row">
+            <span style="color:var(--muted);">Subtotal</span>
+            <span>${formatMoney(subtotal)}</span>
+          </div>
+          <div class="summary-row">
+            <span style="color:var(--muted);">Shipping ${subtotal >= 75 ? "(Free over $75)" : ""}</span>
+            <span>${shipping === 0 ? "FREE" : formatMoney(shipping)}</span>
+          </div>
+          <div class="summary-total">
+            <span>Estimated Total</span>
+            <span>${formatMoney(total)}</span>
+          </div>
+          <button type="button" class="btn-dark" style="width:100%; justify-content:center; margin-top:16px; padding:12px 18px;" onclick="showView('payment')">
+            PROCEED TO CHECKOUT &rarr;
+          </button>
+        </div>
+      `;
+    }
+
+    function selectPaymentMethod(method) {
+      selectedPaymentMethod = method;
+      renderPayment();
+    }
+
+    function renderPayment() {
+      const box = document.getElementById("paymentContainer");
+      if (bag.length === 0) {
+        showView("bag");
+        return;
+      }
+
+      const subtotal = bag.reduce((s, i) => s + i.price * i.qty, 0);
+      const shipping = subtotal >= 75 ? 0 : 6.99;
+      const total = subtotal + shipping;
+
+      let methodFieldsHtml = "";
+      if (selectedPaymentMethod === "card") {
+        methodFieldsHtml = `
+          <div class="field">
+            <label for="cardHolder">Name on Card</label>
+            <input id="cardHolder" type="text" required placeholder="Full name on card" />
+          </div>
+          <div class="field">
+            <label for="cardNum">Card Number</label>
+            <input id="cardNum" type="text" inputmode="numeric" maxlength="19" required placeholder="1234 5678 9012 3456" />
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <div class="field">
+              <label for="cardExp">Expiration (MM/YY)</label>
+              <input id="cardExp" type="text" maxlength="5" required placeholder="09/28" />
+            </div>
+            <div class="field">
+              <label for="cardCvc">Security Code (CVC)</label>
+              <input id="cardCvc" type="text" inputmode="numeric" maxlength="4" required placeholder="123" />
             </div>
           </div>
+        `;
+      } else if (selectedPaymentMethod === "applepay") {
+        methodFieldsHtml = `
+          <p style="font-size:12px; color:var(--muted); line-height:1.5;">
+            Express checkout with <strong>Apple Pay</strong>. Click below to authorize your ${formatMoney(total)} payment using your linked Apple Wallet card.
+          </p>
+        `;
+      } else if (selectedPaymentMethod === "paypal") {
+        methodFieldsHtml = `
+          <div class="field">
+            <label for="paypalEmail">PayPal Account Email</label>
+            <input id="paypalEmail" type="email" required placeholder="you@example.com" />
+          </div>
+          <p style="font-size:12px; color:var(--muted);">
+            Your payment of ${formatMoney(total)} will be processed securely through PayPal.
+          </p>
+        `;
+      } else if (selectedPaymentMethod === "klarna") {
+        const installment = total / 4;
+        methodFieldsHtml = `
+          <p style="font-size:12px; color:var(--text); margin-bottom:6px;">
+            <strong>4 interest-free payments of ${formatMoney(installment)}</strong>
+          </p>
+          <p style="font-size:12px; color:var(--muted);">
+            Pay today: ${formatMoney(installment)}, followed by 3 automatic payments every 2 weeks with 0% APR.
+          </p>
+        `;
+      }
 
+      box.innerHTML = `
+        <div class="step-trail">
+          <span>1. Your Bag</span>
+          <span>&rsaquo;</span>
+          <span class="active-step">2. Payment Method</span>
+          <span>&rsaquo;</span>
+          <span>3. Confirmation</span>
+        </div>
+
+        <h2 style="font-weight:normal; margin-bottom:4px;">Checkout &amp; Payment</h2>
+        <p style="font-style:italic; font-size:13px; color:var(--muted); margin-bottom:14px;">
+          Complete your order securely at Leticia's Boutique.
+        </p>
+
+        <div class="checkout-grid">
           <form onsubmit="submitOrder(event, ${total})">
+            <h3 class="section-subtitle">Shipping Details</h3>
             <div class="field">
-              <label>Full Name</label>
-              <input type="text" required placeholder="Your full name" />
+              <label for="shipName">Full Name</label>
+              <input id="shipName" type="text" required placeholder="Your full name" />
             </div>
             <div class="field">
-              <label>Card Number</label>
-              <input type="text" inputmode="numeric" required placeholder="1234 5678 9012 3456" />
+              <label for="shipEmail">Email for Receipt</label>
+              <input id="shipEmail" type="email" required placeholder="you@example.com" />
             </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-              <div class="field">
-                <label>MM/YY</label>
-                <input type="text" required placeholder="09/28" />
-              </div>
-              <div class="field">
-                <label>CVC</label>
-                <input type="text" required placeholder="123" />
-              </div>
+            <div class="field">
+              <label for="shipAddress">Shipping Address</label>
+              <input id="shipAddress" type="text" required placeholder="Street address, city, state, ZIP" />
             </div>
-            <button type="submit" class="btn-dark" style="width:100%; justify-content:center; margin-top:6px;">
-              PAY $${total.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+
+            <h3 class="section-subtitle">Select Payment Method</h3>
+            <div class="payment-methods">
+              <button type="button" class="pm-option ${selectedPaymentMethod === "card" ? "selected" : ""}" onclick="selectPaymentMethod('card')">
+                <span class="pm-radio"></span>
+                <span>Credit / Debit Card</span>
+              </button>
+              <button type="button" class="pm-option ${selectedPaymentMethod === "applepay" ? "selected" : ""}" onclick="selectPaymentMethod('applepay')">
+                <span class="pm-radio"></span>
+                <span>Apple Pay</span>
+              </button>
+              <button type="button" class="pm-option ${selectedPaymentMethod === "paypal" ? "selected" : ""}" onclick="selectPaymentMethod('paypal')">
+                <span class="pm-radio"></span>
+                <span>PayPal</span>
+              </button>
+              <button type="button" class="pm-option ${selectedPaymentMethod === "klarna" ? "selected" : ""}" onclick="selectPaymentMethod('klarna')">
+                <span class="pm-radio"></span>
+                <span>4 Interest-Free Payments</span>
+              </button>
+            </div>
+
+            <div class="pm-panel">
+              ${methodFieldsHtml}
+            </div>
+
+            <button type="submit" class="btn-dark" style="width:100%; justify-content:center; padding:12px 18px;">
+              COMPLETE PAYMENT &bull; ${formatMoney(total)}
             </button>
           </form>
+
+          <div class="summary-card">
+            <h3 class="section-subtitle" style="margin-bottom:12px;">Order Summary</h3>
+            ${bag.map(item => `
+              <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border); font-size:12px;">
+                <span>${item.name} &times; ${item.qty}</span>
+                <strong>${formatMoney(item.price * item.qty)}</strong>
+              </div>
+            `).join("")}
+            <div class="summary-row">
+              <span style="color:var(--muted);">Subtotal</span>
+              <span>${formatMoney(subtotal)}</span>
+            </div>
+            <div class="summary-row">
+              <span style="color:var(--muted);">Shipping</span>
+              <span>${shipping === 0 ? "FREE" : formatMoney(shipping)}</span>
+            </div>
+            <div class="summary-total">
+              <span>Total</span>
+              <span>${formatMoney(total)}</span>
+            </div>
+          </div>
         </div>
       `;
     }
 
     function submitOrder(e, total) {
       e.preventDefault();
+      const customerName = document.getElementById("shipName").value.trim();
+      const customerEmail = document.getElementById("shipEmail").value.trim();
+      const methodLabels = {
+        card: "Credit / Debit Card",
+        applepay: "Apple Pay",
+        paypal: "PayPal",
+        klarna: "4 Interest-Free Payments"
+      };
+      const orderNumber = "LB-" + Math.floor(100000 + Math.random() * 900000);
+
       bag = [];
-      document.getElementById("bagCount").textContent = "0";
-      document.getElementById("checkoutContainer").innerHTML = `
-        <h2>Order Confirmed</h2>
-        <p style="margin-top:8px; color:var(--muted);">
-          Thank you for shopping at Leticia's Boutique. Your payment of $${total.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} has been received.
+      updateBagBadge();
+
+      document.getElementById("paymentContainer").innerHTML = `
+        <div class="step-trail">
+          <span>1. Your Bag</span>
+          <span>&rsaquo;</span>
+          <span>2. Payment Method</span>
+          <span>&rsaquo;</span>
+          <span class="active-step">3. Confirmation</span>
+        </div>
+        <h2 style="font-weight:normal; margin-bottom:8px;">Thank You, ${customerName}</h2>
+        <p style="font-style:italic; color:var(--muted); margin-bottom:14px;">
+          Your order <strong>${orderNumber}</strong> has been confirmed.
         </p>
+        <p style="font-family:system-ui, sans-serif; font-size:13px; color:var(--text); margin-bottom:20px;">
+          We received your payment of <strong>${formatMoney(total)}</strong> via <strong>${methodLabels[selectedPaymentMethod]}</strong>. A confirmation receipt has been sent to <strong>${customerEmail}</strong>.
+        </p>
+        <button type="button" class="btn-dark" onclick="showView('home')">RETURN TO HOME &rarr;</button>
       `;
     }
 
